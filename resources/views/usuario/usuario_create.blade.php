@@ -90,9 +90,9 @@
                 <div class="form-group col-md-4">
                     <label for="setor"> Setor </label>
                     <select id="setor" class="form-control" name="setor">
-                        <option data-value="Administrativo">Administrativo</option>
-                        <option data-value="Academico">Acadêmico</option>
-                        <option data-value="Administrativo/Academico">Administrativo/Acadêmico</option>
+                        <option value="Administrativo">Administrativo</option>
+                        <option value="Academico">Acadêmico</option>
+                        <option value="Administrativo/Academico">Administrativo/Acadêmico</option>
                     </select>
                 </div>
                 <div class="form-group col-md-4">

@@ -34,7 +34,7 @@
                 <div class="form-group col-md-4">
                     <label for="cpf" class="col-form-label text-md-right">{{ __('CPF') }}</label>
 
-                    <input id="cpf" type="text" class="form-control @error('cpf') is-invalid @enderror" 
+                    <input id="cpf" type="text" class="form-control @error('cpf') is-invalid @enderror"
                                 name="cpf" value="{{ old('cpf') }}" required autocomplete="cpf" autofocus
                                 placeHolder="000.000.000-00">
 
@@ -49,7 +49,7 @@
                     <label for="rg" class="col-form-label text-md-right">{{ __('RG') }}</label>
 
                 <input id="rg" type="text" maxlength="11"
-                                class="form-control @error('rg') is-invalid @enderror"  
+                                class="form-control @error('rg') is-invalid @enderror"
                                 name="rg" value="{{ old('rg') }}" required autocomplete="rg" autofocus placeHolder="0000000">
 
                     @error('rg')
@@ -114,8 +114,8 @@
                     <label for="matricula"
                             class="col-form-label text-md-right">{{ __('Matrícula') }}</label>
 
-                    <input id="matricula" type="text" class="form-control @error('matricula') is-invalid @enderror" 
-                                maxlength="11" name="matricula" value="{{ old('matricula') }}" 
+                    <input id="matricula" type="text" class="form-control @error('matricula') is-invalid @enderror"
+                                maxlength="11" name="matricula" value="{{ old('matricula') }}"
                                 required autocomplete="matricula" autofocus placeHolder="000000000">
 
                     @error('matricula')
@@ -130,8 +130,8 @@
 
                     <select id="setor" class="form-control" name="setor">
                         <option data-value="Administrativo">Administrativo</option>
-                        <option data-value="Academico">Academico</option>
-                        <option data-value="Administrativo/Academico">Administrativo/Academico</option>
+                        <option data-value="Academico">Acadêmico</option>
+                        <option data-value="Administrativo/Academico">Administrativo/Acadêmico</option>
                     </select>
                 </div>
             </div>
