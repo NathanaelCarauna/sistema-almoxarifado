@@ -12,6 +12,7 @@ use App\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class SolicitacaoController extends Controller
 {
@@ -360,12 +361,13 @@ class SolicitacaoController extends Controller
         session(['itemSolicitacoes' => $consulta]);
 
         return json_encode($consulta);
+
+
     }
 
     public function getObservacaoSolicitacao($id)
     {
         $usuarioID = Solicitacao::select('usuario_id')->where('id', '=', $id)->get();
-
         if (1 == Auth::user()->cargo_id && Auth::user()->id != $usuarioID[0]->usuario_id) {
             return json_encode('');
         }
