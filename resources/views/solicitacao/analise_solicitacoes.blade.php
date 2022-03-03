@@ -47,6 +47,8 @@
                 <th scope="col" style="text-align: center">Data</th>
             </tr>
         </thead>
+
+
         <tbody>
             @if (count($dados) > 0 && count($materiaisPreview) > 0)
                 @for ($i = 0; $i < count($dados); $i++)

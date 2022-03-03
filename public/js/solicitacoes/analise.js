@@ -42,7 +42,7 @@ function showItens(id) {
     });
 }
 
-$(function () { 
+$(function () {
 
     $(document).on("focus", ".quantMateriais", function(){
         $(this).mask("#", {

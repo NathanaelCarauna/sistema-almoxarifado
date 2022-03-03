@@ -41,24 +41,24 @@ class RelatorioController extends Controller
             $materiais = DB::select("select mat.nome, mat.codigo, mat.descricao, item.quantidade_solicitada, usuario.nome as nome_usuario, count(*)
             from materials mat, item_solicitacaos item, historico_statuses status, solicitacaos soli, usuarios usuario
             where (item.created_at >= now() - interval '7 days') and item.solicitacao_id = soli.id
-            and status.solicitacao_id = soli.id and soli.usuario_id = usuario.id and status.data_aprovado is not null and status.data_finalizado is not null 
+            and status.solicitacao_id = soli.id and soli.usuario_id = usuario.id and status.data_aprovado is not null and status.data_finalizado is not null
             and status = 'Entregue' and mat.id = item.material_id group by mat.id,item.quantidade_solicitada, usuario.nome having count(*) >= 10 order by mat.id");
         } elseif (3 == $request->tipo_relatorio) {
-            $materiais = DB::select("select mat.nome, mat.codigo, mat.descricao, item.quantidade_solicitada, usuario.nome as nome_usuario 
+            $materiais = DB::select("select mat.nome, mat.codigo, mat.descricao, item.quantidade_solicitada, usuario.nome as nome_usuario
             from materials mat, item_solicitacaos item, historico_statuses status, solicitacaos soli, usuarios usuario
             where (item.created_at between '".$data_inicio."' and '".$data_fim."') and item.solicitacao_id = soli.id
-            and status.solicitacao_id = soli.id and soli.usuario_id = usuario.id and status.data_aprovado is not null and status.data_finalizado is not null 
+            and status.solicitacao_id = soli.id and soli.usuario_id = usuario.id and status.data_aprovado is not null and status.data_finalizado is not null
             and status = 'Entregue' and mat.id = item.material_id order by mat.id");
         } elseif (2 == $request->tipo_relatorio) {
             $materiais = DB::select("select mat.nome, mat.codigo, mat.descricao, est.quantidade from materials mat, estoques est where mat.id = est.material_id
             except
             select mat.nome, mat.codigo, mat.descricao, est.quantidade from materials mat, item_solicitacaos item, estoques est
-            where (item.created_at between '".$data_inicio."' and '".$data_fim."') 
+            where (item.created_at between '".$data_inicio."' and '".$data_fim."')
             and mat.id = item.material_id and mat.id = est.material_id order by nome");
         } elseif (0 == $request->tipo_relatorio || 1 == $request->tipo_relatorio) {
             $materiais = DB::select("select dep.nome as nomeDep, mat.nome as nomeMat, mat.descricao, mat.codigo, itensMov.quantidade
             from materials mat, depositos dep, item_movimentos itensMov, movimentos mov, estoques est
-            where mov.created_at between '".$data_inicio."' and '".$data_fim."' and mov.operacao = ? and itensMov.movimento_id = mov.id and itensMov.material_id = mat.id and 
+            where mov.created_at between '".$data_inicio."' and '".$data_fim."' and mov.operacao = ? and itensMov.movimento_id = mov.id and itensMov.material_id = mat.id and
             itensMov.estoque_id = est.id and est.deposito_id = dep.id", [$request->tipo_relatorio]);
         }
 
