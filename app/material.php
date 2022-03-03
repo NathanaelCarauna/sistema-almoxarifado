@@ -15,7 +15,7 @@ class Material extends Model
         'codigo' => 'bail|min:1|required|max:20',
         'quantidade_minima' => 'required|integer|min:1',
         'descricao' => 'bail|min:5|required|max:255',
-        'imagem' => 'required|image'
+        'imagem' => 'image'
     ];
 
     public static $messages = [
@@ -30,6 +30,5 @@ class Material extends Model
         'descricao.required' => 'A descrição do material é obrigatória',
         'descricao.min' => 'A descrição do material deve ter no mínimo 5 caracteres.',
         'descricao.max' => 'A descrição do material deve ter no máximo 255 caracteres.',
-        'imagem.*' => 'A imagem é obrigatória'
     ];
 }
