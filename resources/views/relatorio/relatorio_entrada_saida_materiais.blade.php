@@ -11,11 +11,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 </head>
 <body>
-    <img align="right" src="{{ public_path('imagens/logo_upe.png') }}" width="150px" height="75px">
+    <img align="right" src="{{ public_path('imagens/ufape_rel.png') }}" width="200px" height="100px">
     <h2>RELATÓRIO DE {{ $tipo_relatorio == 0 ? 'ENTRADA' : 'SAÍDA' }} DE MATERIAIS</h2>
     <h4>RELATÓRIO REFERENTE AO PERÍODO: {{ date('d/m/Y',  strtotime($datas[0])) }} A {{ date('d/m/Y',  strtotime($datas[1])) }}</h4>
 
-    <table id="tableMateriais" style="">
+    <table id="tableMateriais" style="width: 100%">
         <thead style="background-color: lightgray; border-radius: 15px">
              <tr>
                 <th class="align-middle" scope="col">Depósito</th>
