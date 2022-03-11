@@ -12,7 +12,7 @@ $factory->define(Usuario::class, function (Faker $faker) {
         'cpf' => rand(10000000000, 99999999999),
         'numTel' => rand(10000000000, 99999999999),
         'rg' => rand(100000000, 999999999),
-        'data_nascimento' => $faker->date('d-m-Y'),
+        'data_nascimento' => '1998-06-18',
         'matricula' => rand(100000, 999999),
         'cargo_id' => 1,
         'email' => $faker->email,
