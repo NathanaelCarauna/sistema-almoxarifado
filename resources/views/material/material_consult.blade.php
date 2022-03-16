@@ -41,8 +41,15 @@
                 <!-- Cor Verde -->
                     <td bgcolor="c7f9cc"></td>
                 @endif
-                <td><img src="{{ url('storage/img/materiais/'.$material->imagem) }}" alt="{{ $material->imagem }}"
-                         width="80" height="80"></td>
+                <td>
+                    @if($material->imagem != null)
+                        <img src="{{ url('storage/img/materiais/'.$material->imagem) }}" alt="{{ $material->imagem }}"
+                             width="80" height="80">
+                    @else
+                        <img src="{{ asset('/imagens/foto_inexistente.jpeg') }}"
+                             width="80" height="80">
+                    @endif
+                </td>
                 <td>{{ $material->nome }}</td>
                 <td>{{ $material->descricao }}</td>
                 <td style="text-align: center">{{ $quantidadeTotal }}</td>

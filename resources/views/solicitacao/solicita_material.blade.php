@@ -47,7 +47,7 @@
                 <select id="selectMaterial" class="selectMaterial" class="form-control" style="width: 95%;">
                     <option></option>
                     @foreach($materiais as $material)
-                        <option data-value="{{$material->id}}"> {{$material->codigo}} - {{ $material->nome }} </option>
+                        <option data-value="{{$material->id}}">{{$material->codigo}} - {{ $material->nome }} </option>
                     @endforeach
                 </select>
             </div>
@@ -108,7 +108,7 @@
         <div class="modal-dialog modal-xl" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="modalLabel" style="color:#151631">Editar Solicitação</span></h5>
+              <h5 class="modal-title" id="modalLabel" style="color:#151631">Editar Solicitação</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

@@ -73,7 +73,7 @@ function removerMaterial(ctl) {
 function updateRowTable() {
     $(_row).after(
         "<tr data-id=" + $("#selectMaterialEdit option:selected").val() + ">" +
-        "<td data-id=" + $("#selectMaterialEdit option:selected").index() + " class=\"materialRow\">" + $("#selectMaterialEdit option:selected").text() + "</td>" + construirTable($("#InputQuantEdit").val())
+        "<td data-id=" + $("#selectMaterialEdit option:selected").val() + " class=\"materialRow\">" + $("#selectMaterialEdit option:selected").text() + "</td>" + construirTable($("#InputQuantEdit").val())
     );
     $(_row).remove();
     clearFields();
@@ -131,7 +131,7 @@ function setValuesRowInput() {
 function addTable() {
     if ($("#selectMaterial option:selected").index() > 0 && $("#quantMaterial").val() != '') {
         $("#tableMaterial tbody").append("<tr data-id=" + $("#selectMaterial option:selected").data('value') + ">" +
-            "<td data-id=" + $("#selectMaterial option:selected").index() + " class=\"materialRow\">" + $("#selectMaterial option:selected").text() + "</td>" +
+            "<td data-id=" + $("#selectMaterial option:selected").data('value') + " class=\"materialRow\">" + $("#selectMaterial option:selected").text() + "</td>" +
             construirTable($("#quantMaterial").val()));
     } else {
         $('#error').slideDown();
@@ -181,22 +181,22 @@ $(function () {
     $("#quantMaterial").mask("#", {
         maxlength: true,
         translation: {
-            '#': { pattern: /[0-9]/, recursive: true }
+            '#': {pattern: /[0-9]/, recursive: true}
         }
     });
 
     $("#inputNomeReceptor").mask("#", {
         maxlength: true,
         translation: {
-            '#': { pattern: /^[A-Za-záâãéêíóôõúçÁÂÃÉÊÍÓÔÕÚÇ\s]+$/, recursive: true }
+            '#': {pattern: /^[A-Za-záâãéêíóôõúçÁÂÃÉÊÍÓÔÕÚÇ\s]+$/, recursive: true}
         }
     });
 
-    
+
     $("#inputRgReceptor").mask("#", {
         maxlength: true,
         translation: {
-            '#': { pattern: /[0-9]/, recursive: true }
+            '#': {pattern: /[0-9]/, recursive: true}
         }
     });
 })
