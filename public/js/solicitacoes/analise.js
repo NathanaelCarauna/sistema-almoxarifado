@@ -11,7 +11,10 @@ function showItens(id) {
         dataType: 'json',
         success: function (data) {
             $('#textObservacaoRequerente').text(data[0]['observacao_requerente']);
-            $('#textObservacaoAdmin').text(data[0]['observacao_admin']);;
+            $('#textObservacaoAdmin').text(data[0]['observacao_admin']);
+            $('#inputNomeReceptor').val(data[0]['receptor']);
+            $('#inputRgReceptor').val(data[0]['receptor_rg']);
+            $('#inputTipoReceptor').val(data[0]['receptor_tipo']);
         }
     });
 

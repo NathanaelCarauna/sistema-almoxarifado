@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'CheckCargoRequerente' => \App\Http\Middleware\CheckCargoRequerente::class,
         'CheckCargoDiretoria' => \App\Http\Middleware\CheckCargoDiretoria::class,
         'CheckCargoAdminDiretoria' => \App\Http\Middleware\CheckCargoAdminDiretoria::class,
+        'CheckCargoAdminTerceirizado' => \App\Http\Middleware\CheckCargoAdminTerceirizado::class,
     ];
 }

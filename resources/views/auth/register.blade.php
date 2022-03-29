@@ -116,7 +116,7 @@
 
                     <input id="matricula" type="text" class="form-control @error('matricula') is-invalid @enderror"
                                 maxlength="11" name="matricula" value="{{ old('matricula') }}"
-                                required autocomplete="matricula" autofocus placeHolder="000000000">
+                                required autocomplete="matricula" placeHolder="000000000" autofocus>
 
                     @error('matricula')
                     <span class="invalid-feedback" role="alert">

@@ -19,8 +19,10 @@ class CreateSolicitacaos extends Migration
             $table->string('observacao_admin')->nullable();
             $table->unsignedInteger('usuario_id')->index();
             $table->foreign('usuario_id')->references('id')->on('usuarios');
-            $table->string('receptor')->nullable();
-            $table->string('receptor_rg')->nullable();
+            $table->string('receptor');
+            $table->string('receptor_rg');
+            $table->string('receptor_tipo');
+            $table->string('setor_usuario');
             $table->timestamps();
         });
     }

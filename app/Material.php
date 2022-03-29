@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Material extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['nome', 'codigo', 'descricao', 'quantidade_minima', 'imagem'];
+    protected $fillable = ['nome', 'codigo', 'descricao', 'quantidade_minima', 'imagem', 'corredor', 'prateleira', 'coluna'];
 
     public static $rules = [
         'nome' => 'bail|min:3|required|max:50',
