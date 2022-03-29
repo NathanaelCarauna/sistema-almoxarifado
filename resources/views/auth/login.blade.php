@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-sm-7" style="margin-right: 30px">
                 <div>
-                    <h2 style="color: #3E3767"><strong>O que é a plataforma eletrônica de gestão de almoxarifado (PEGA)?</strong></h2>
+                    <h2 style="color: #3E3767"><strong>Plataforma Eletrônica de Gestão de Almoxarifados (PEGA)</strong></h2>
                     <p style="color: #3E3767; text-align: justify">
                         É uma aplicação web desenvolvida no âmbito da cooperação técnica UFAPE-LMTS / UPE com o objetivo de informatizar o gerenciamento de almoxarifados,
                          auxiliando os responsáveis nas suas rotinas de trabalho,
