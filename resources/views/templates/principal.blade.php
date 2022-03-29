@@ -68,6 +68,11 @@
                             @include('templates.painel.diretoria')
                         @endif
                     @endauth
+                        @auth
+                        @if (Auth::user()->cargo_id == 4)
+                            @include('templates.painel.terceirizado')
+                        @endif
+                    @endauth
                 @endif
             @endauth
             @guest

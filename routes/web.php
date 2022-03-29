@@ -18,7 +18,6 @@ Route::middleware(['auth', 'verified', 'CheckCargoAdministrador'])->group(functi
     Route::get('notificacao/{notificacao_id}', 'NotificacaoController@show')->name('notificacao.show');
     Route::get('notificacoes', 'NotificacaoController@index')->name('notificacao.index');
 
-    Route::resource('material', 'MaterialController')->except(['show']);
     Route::get('material/index_edit', 'MaterialController@indexEdit')->name('material.indexEdit');
     Route::get('material/{id}/remover', 'MaterialController@destroy')->name('material.destroy');
 
@@ -31,8 +30,6 @@ Route::middleware(['auth', 'verified', 'CheckCargoAdministrador'])->group(functi
     Route::post('movimento_transferencia', 'MovimentoController@transferenciaStore')->name('movimento.transferenciaStore');
 
     Route::resource('deposito', 'DepositoController');
-    Route::get('get_estoques/{deposito_id}', 'DepositoController@getEstoques')->name('deposito.getEstoque');
-    Route::get('consultarDeposito', 'DepositoController@consultarDepositoView')->name('deposito.consultarDeposito');
     Route::get('deposito/{id}/remover', 'DepositoController@destroy')->name('deposito.destroy');
 
     Route::resource('cargo', 'CargoController');
@@ -40,12 +37,6 @@ Route::middleware(['auth', 'verified', 'CheckCargoAdministrador'])->group(functi
     Route::resource('solicita', 'SolicitacaoController');
     Route::get('analise_solicitacoes', 'SolicitacaoController@listSolicitacoesAnalise')->name('analise.solicitacoes');
     Route::POST('analise_solicitacoes', 'SolicitacaoController@checkAnaliseSolicitacao')->name('analise.solicitacao');
-
-    Route::get('entrega_materiais', 'SolicitacaoController@listSolicitacoesAprovadas')->name('entrega.materiais');
-    Route::POST('entrega_materiais', 'SolicitacaoController@checkEntregarMateriais')->name('entrega.materiais');
-
-    Route::get('itens_solicitacao_admin/{id}', 'SolicitacaoController@getItemSolicitacaoAdmin')->name('itens.solicitacao.admin');
-    Route::get('solicitacoes_admin', 'SolicitacaoController@listTodasSolicitacoes')->name('solicitacoe.admin');
 });
 
 Route::middleware(['auth', 'verified', 'CheckCargoRequerente'])->group(function () {
@@ -62,6 +53,15 @@ Route::middleware(['auth', 'verified', 'CheckCargoAdminDiretoria'])->group(funct
     Route::POST('relatorio.materiais', 'RelatorioController@gerarRelatorioMateriais')->name('relatorio.materiais');
 });
 
+Route::middleware(['auth', 'verified', 'CheckCargoAdminTerceirizado'])->group(function () {
+    Route::get('entrega_materiais', 'SolicitacaoController@listSolicitacoesAprovadas')->name('entrega.materiais');
+    Route::POST('entrega_materiais', 'SolicitacaoController@checkEntregarMateriais')->name('entrega.materiais');
+    Route::get('consultarDeposito', 'DepositoController@consultarDepositoView')->name('deposito.consultarDeposito');
+    Route::resource('material', 'MaterialController')->except(['show']);
+    Route::get('solicitacoes_admin', 'SolicitacaoController@listTodasSolicitacoes')->name('solicitacoe.admin');
+    Route::get('get_estoques/{deposito_id}', 'DepositoController@getEstoques')->name('deposito.getEstoque');
+});
+
 Route::middleware('auth', 'verified')->group(function () {
     Route::resource('usuario', 'UsuarioController');
     Route::get('usuario/{id}/edit_perfil', 'UsuarioController@edit_perfil')->name('usuario.edit_perfil');
@@ -76,6 +76,7 @@ Route::middleware('auth', 'verified')->group(function () {
     })->name('home');
 
     Route::get('observacao_solicitacao/{id}', 'SolicitacaoController@getObservacaoSolicitacao')->name('observacao.solicitacao');
+    Route::get('itens_solicitacao_admin/{id}', 'SolicitacaoController@getItemSolicitacaoAdmin')->name('itens.solicitacao.admin');
 });
 
 Auth::routes(['verify' => true]);

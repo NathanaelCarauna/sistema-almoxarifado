@@ -9,11 +9,14 @@ $(function () {
             $("#inputNomeReceptor").val($("#nomeReceptor").val())
             $("#inputRgReceptor").prop('disabled', true);
             $("#inputRgReceptor").val($("#rgReceptor").val())
+            $("#inputTipoReceptor").prop('disabled', true);
+            $("#inputTipoReceptor").prop('selectedIndex',0);
         } else {
             $("#inputNomeReceptor").prop('disabled', false);
             $("#inputNomeReceptor").val('')
             $("#inputRgReceptor").prop('disabled', false);
             $("#inputRgReceptor").val('')
+            $("#inputTipoReceptor").prop('disabled', false);
         }
     });
 });

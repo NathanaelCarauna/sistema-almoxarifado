@@ -91,6 +91,14 @@
                 <input type="hidden" id="rgReceptor" name="rgReceptor" value="{{Auth::user()->rg}}">
                 <input type="text" min="1" maxlength="11" class="form-control" id="inputRgReceptor" name="rgReceptor" value="{{Auth::user()->rg}}" disabled="true">
             </div>
+            <div class="form-group col-md-3">
+                <label for="inputRgReceptor">Tipo</label>
+                <select class="form-control" id="inputTipoReceptor" name="tipoReceptor" disabled="true">
+                    <option id="tipoServidor" value="Servidor" selected>Servidor</option>
+                    <option id="tipoAluno" value="Aluno">Aluno</option>
+                    <option id="tipoTerceirizado" value="Terceirizado">Terceirizado</option>
+                </select>
+            </div>
         </div>
         <div class="form-group col-md-12" class="form-row" style="border-bottom: #cfc5c5 1px solid; padding: 0 0 20px 0;">
             <label for="inputObservacao"><strong>Observações:</strong></label>

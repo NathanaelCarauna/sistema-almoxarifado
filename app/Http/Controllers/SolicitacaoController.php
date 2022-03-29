@@ -63,10 +63,17 @@ class SolicitacaoController extends Controller
         $solicitacao = new Solicitacao();
         $solicitacao->usuario_id = Auth::user()->id;
         $solicitacao->observacao_requerente = $request->observacao;
+        $usuario = Usuario::find(Auth::user()->id);
         if (is_null($request->checkReceptor)) {
             $solicitacao->receptor = $request->nomeReceptor;
             $solicitacao->receptor_rg = $request->rgReceptor;
+            $solicitacao->receptor_tipo = $request->tipoReceptor;
+        } else {
+            $solicitacao->receptor = $usuario->nome;
+            $solicitacao->receptor_rg = $usuario->rg;
+            $solicitacao->receptor_tipo = 'Servidor';
         }
+        $solicitacao->setor_usuario = $usuario->setor;
 
         $solicitacao->save();
 
@@ -360,7 +367,7 @@ class SolicitacaoController extends Controller
             session()->forget('itemSolicitacoes');
         }
 
-        $consulta = DB::select('select item.quantidade_solicitada, item.material_id, mat.nome, mat.descricao, item.quantidade_aprovada, item.id, item.quantidade_solicitada, est.quantidade
+        $consulta = DB::select('select item.quantidade_solicitada, item.material_id, mat.nome, mat.corredor, mat.prateleira, mat.coluna, mat.descricao, item.quantidade_aprovada, item.id, item.quantidade_solicitada, est.quantidade
             from item_solicitacaos item, materials mat, estoques est where item.solicitacao_id = ? and mat.id = item.material_id and est.material_id = item.material_id and est.deposito_id = 1', [$id]);
 
         session(['itemSolicitacoes' => $consulta]);
@@ -377,7 +384,7 @@ class SolicitacaoController extends Controller
             return json_encode('');
         }
 
-        $consulta = DB::select('select observacao_requerente, observacao_admin from solicitacaos where id = ?', [$id]);
+        $consulta = DB::select('select observacao_requerente, observacao_admin, receptor_rg, receptor_tipo, receptor from solicitacaos where id = ?', [$id]);
 
         return json_encode($consulta);
     }

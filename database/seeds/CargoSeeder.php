@@ -14,5 +14,6 @@ class CargoSeeder extends Seeder
         factory(\App\Cargo::class, 1)->create(['nome' => 'Requerente']);
         factory(\App\Cargo::class, 1)->create(['nome' => 'Administrador']);
         factory(\App\Cargo::class, 1)->create(['nome' => 'Diretoria']);
+        factory(\App\Cargo::class, 1)->create(['nome' => 'Assistente de estoque']);
     }
 }

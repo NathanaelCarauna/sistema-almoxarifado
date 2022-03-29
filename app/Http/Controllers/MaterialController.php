@@ -63,7 +63,10 @@ class MaterialController extends Controller
             'codigo' => $request->codigo,
             'descricao' => $request->descricao,
             'quantidade_minima' => $request->quantidade_minima,
-            'imagem' => $request->imagem
+            'imagem' => $request->imagem,
+            'corredor' => $request->corredor,
+            'prateleira' => $request->prateleira,
+            'coluna' => $request->coluna
         ];
 
         $material = Material::create($data);
@@ -104,6 +107,9 @@ class MaterialController extends Controller
             'codigo' => $request->codigo,
             'descricao' => $request->descricao,
             'quantidade_minima' => $request->quantidade_minima,
+            'corredor' => $request->corredor,
+            'prateleira' => $request->prateleira,
+            'coluna' => $request->coluna
         ];
 
         if (($request->hasFile('imagem') && $request->file('imagem')->isValid())) {

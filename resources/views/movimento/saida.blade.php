@@ -16,7 +16,7 @@
                     style="width: 95%;" autofocus name="material_id" required>
                     <option></option>
                     @foreach($materiais as $material)
-                        <option value="{{$material->id}}">{{$material->codigo}} - {{ $material->nome }}</option>
+                        <option value="{{$material->id}}">{{ $material->nome }}[{{$material->codigo}}] - Localização: {{strtoupper('('.$material->corredor.'-'.$material->prateleira.'-'.$material->coluna.')')}}</option>
                     @endforeach
                 </select>
                 @error('material_id')
