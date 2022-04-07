@@ -44,7 +44,7 @@ class RelatorioController extends Controller
             and status.solicitacao_id = soli.id and soli.usuario_id = usuario.id and status.data_aprovado is not null and status.data_finalizado is not null
             and status = 'Entregue' and mat.id = item.material_id group by mat.id,item.quantidade_solicitada, usuario.nome having count(*) >= 10 order by mat.id");
         } elseif (3 == $request->tipo_relatorio) {
-            $materiais = DB::select("select mat.nome, mat.codigo, mat.descricao, item.quantidade_solicitada, usuario.nome as nome_usuario
+            $materiais = DB::select("select mat.nome, mat.codigo, mat.descricao, item.quantidade_aprovada, usuario.nome as nome_usuario
             from materials mat, item_solicitacaos item, historico_statuses status, solicitacaos soli, usuarios usuario
             where (item.created_at between '".$data_inicio."' and '".$data_fim."') and item.solicitacao_id = soli.id
             and status.solicitacao_id = soli.id and soli.usuario_id = usuario.id and status.data_aprovado is not null and status.data_finalizado is not null
