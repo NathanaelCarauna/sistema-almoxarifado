@@ -141,7 +141,7 @@
                                 <div class="form-group col-md-4">
                                     <label for="inputRgReceptor">Tipo</label>
                                     <input type="text" class="form-control" id="inputTipoReceptor" name="tipoReceptor" value=""
-                                            readonly>
+                                           readonly>
                                 </div>
                             </div>
                         </div>

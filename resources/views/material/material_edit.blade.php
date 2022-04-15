@@ -63,6 +63,7 @@
             <div class="form-group col-md-1">
                 <label for="corredor">Unidades</label>
                 <select class="form-control" name="unidade" id="unidade">
+                    <option value="unidade">Unidade</option>
                     <option value="litro">Litro</option>
                     <option value="metro">Metro</option>
                     <option value="cx">CX</option>
