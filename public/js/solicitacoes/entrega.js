@@ -29,6 +29,7 @@ function showItens(id) {
                 ret += "<td>" + data[item]['nome'] + "</td>";
                 ret += "<td>" + data[item]['descricao'] + "</td>";
                 ret += "<td style=\"width: 12%; text-align: center\">" + data[item]['corredor'] + "-" + data[item]['prateleira'].toUpperCase() + "-" + data[item]['coluna'] + "</td>";
+                ret += "<td style=\"text-align: center\">" + data[item]['unidade'] + "</td>";
                 ret += "<td style=\"text-align: center\">" + data[item]['quantidade_solicitada'] + "</td>";
                 ret += "<td style=\"text-align: center\">" + (data[item]['quantidade_aprovada'] == null ? '' : data[item]['quantidade_aprovada']) + "</td>";
                 ret += "</tr>";

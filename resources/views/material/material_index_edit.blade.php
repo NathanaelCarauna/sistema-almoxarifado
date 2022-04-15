@@ -26,19 +26,26 @@
             <th class="align-middle" scope="col" style="padding-left: 10px">Descrição</th>
             <th class="align-middle" scope="col" style="text-align: center">Qtd. Mínima</th>
             <th class="align-middle" scope="col" style="text-align: center">Código</th>
+            <th class="align-middle" scope="col" style="text-align: center">Unidade</th>
             <th class="align-middle" scope="col" style="text-align: center">Ações</th>
         </tr>
         </thead>
         <tbody>
         @forelse($materials as $material)
             <tr>
-                <td><img src="{{ url('storage/img/materiais/'.$material->imagem) }}" alt="{{ $material->imagem }}"
-                         width="80" height="80"></td>
+                <td>@if($material->imagem != null)
+                        <img src="{{ url('storage/img/materiais/'.$material->imagem) }}" alt="{{ $material->imagem }}"
+                             width="80" height="80">
+                    @else
+                        <img src="{{ asset('/imagens/foto_inexistente.jpeg') }}"
+                             width="80" height="80">
+                @endif
                 <td>
                 {{ $material->nome }}</th>
                 <td>{{ $material->descricao }}</td>
                 <td style="text-align: center">{{ $material->quantidade_minima }}</td>
                 <td style="text-align: center">{{ $material->codigo }}</td>
+                <td style="text-align: center">{{ $material->unidade }}</td>
                 <td style="text-align: center">
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown" type="button" id="dropdownMenuButton"

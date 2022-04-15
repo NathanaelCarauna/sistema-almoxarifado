@@ -96,6 +96,7 @@
                                 <tr>
                                     <th class="align-middle" scope="col">Material</th>
                                     <th class="align-middle" scope="col">Descrição</th>
+                                    <th class="align-middle" scope="col" style="text-align: center; width: 5%">Unidade</th>
                                     <th class="align-middle" scope="col" style="text-align: center; width: 10%">Qtd. Solicitada</th>
                                     <th class="align-middle" scope="col" style="text-align: center; width: 10%">Qtd. Estoque</th>
                                     <th class="align-middle" scope="col" style="text-align: center; width: 10%">Qtd. Aprovada</th>

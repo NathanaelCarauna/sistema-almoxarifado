@@ -107,6 +107,7 @@
                                     <th scope="col" class="align-middle">Material</th>
                                     <th scope="col" class="align-middle">Descrição</th>
                                     <th scope="col" class="text-center align-middle">Localização</th>
+                                    <th scope="col" class="align-middle" style="text-align: center; width: 5%">Unidade</th>
                                     <th scope="col" style="text-align: center; width: 10%">Qtd. Solicitada</th>
                                     <th scope="col" style="text-align: center; width: 10%">Qtd. Aprovada</th>
                                 </tr>

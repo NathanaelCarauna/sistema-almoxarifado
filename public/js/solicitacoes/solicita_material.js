@@ -48,7 +48,6 @@ function editarMaterial(ctl) {
 }
 
 function confirmarAlteracao() {
-
     if ($("#selectMaterialEdit option:selected").index() > 0 && $("#InputQuantEdit").val() != '') {
         var escolha = confirm("Tem certeza que deseja fazer as alterações?");
         if (escolha) {
