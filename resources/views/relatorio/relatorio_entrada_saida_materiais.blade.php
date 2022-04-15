@@ -38,7 +38,7 @@
                         <td class="align-middle" scope="col" style="text-align: center">{{$material->nomedep}}</td>
                         <td class="align-middle" scope="col" style="text-align: center">{{$material->codigo}}</td>
                         <td class="align-middle" scope="col" style="text-align: center">{{$material->nomemat}} - {{$material->descricao}}</td>
-                        <td class="align-middle" scope="col" style="text-align: center">Und</td>
+                        <td class="align-middle" scope="col" style="text-align: center">{{$material->unidade}}</td>
                         <td class="align-middle" scope="col" style="text-align: center">{{$material->quantidade}}</td>
                     </tr>
                     @if($ultimaCor == $cinza)

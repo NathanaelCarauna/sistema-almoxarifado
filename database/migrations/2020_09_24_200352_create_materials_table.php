@@ -23,6 +23,7 @@ class CreateMaterialsTable extends Migration
             $table->string('corredor');
             $table->string('prateleira');
             $table->string('coluna');
+            $table->string('unidade');
             $table->softDeletes();
             $table->timestamps();
         });

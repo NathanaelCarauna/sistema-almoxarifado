@@ -28,6 +28,7 @@ function showItens(id) {
                 ret += "<tr>";
                 ret += "<td>" + data[item]['nome'] + "</td>";
                 ret += "<td>" + data[item]['descricao'] + "</td>";
+                ret += "<td style=\"text-align: center\">" + data[item]['unidade'] + "</td>";
                 ret += "<td style=\"text-align: center\">" + data[item]['quantidade_solicitada'] + "</td>";
                 ret += "<td style=\"text-align: center\">" + data[item]['quantidade'] + "</td>";
                 ret += "<td style=\"text-align: center\">" + '<input class="quantMateriais" min=\"1\" style=\"width: 85%\" type=\"text\" id=\"inputQuantAprovada\"';

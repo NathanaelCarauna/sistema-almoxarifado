@@ -18,6 +18,7 @@
             <th class="align-middle" scope="col" style="text-align: center">Qtd Mínima</th>
             <th class="align-middle" scope="col" style="text-align: center">Localização</th>
             <th class="align-middle" scope="col" style="text-align: center">Código</th>
+            <th class="align-middle" scope="col" style="text-align: center">Unidade</th>
         </tr>
         </thead>
         <tbody>
@@ -57,6 +58,7 @@
                 <td style="text-align: center">{{ $material->quantidade_minima }}</td>
                 <td style="text-align: center">{{$material->corredor}}-{{strtoupper($material->prateleira)}}-{{$material->coluna}}</td>
                 <td style="text-align: center">{{ $material->codigo }}</td>
+                <td style="text-align: center">{{ $material->unidade }}</td>
             </tr>
         @empty
             <td colspan="5">Sem materiais cadastrados ainda</td>

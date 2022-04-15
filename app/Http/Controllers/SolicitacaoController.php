@@ -367,7 +367,7 @@ class SolicitacaoController extends Controller
             session()->forget('itemSolicitacoes');
         }
 
-        $consulta = DB::select('select item.quantidade_solicitada, item.material_id, mat.nome, mat.corredor, mat.prateleira, mat.coluna, mat.descricao, item.quantidade_aprovada, item.id, item.quantidade_solicitada, est.quantidade
+        $consulta = DB::select('select item.quantidade_solicitada, item.material_id, mat.nome, mat.corredor, mat.prateleira, mat.coluna, mat.descricao, mat.unidade, item.quantidade_aprovada, item.id, item.quantidade_solicitada, est.quantidade
             from item_solicitacaos item, materials mat, estoques est where item.solicitacao_id = ? and mat.id = item.material_id and est.material_id = item.material_id and est.deposito_id = 1', [$id]);
 
         session(['itemSolicitacoes' => $consulta]);

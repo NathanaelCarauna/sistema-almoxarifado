@@ -37,7 +37,7 @@
                     <tr style="background-color:{{ $cor }}" <?php $ultimaCor = $cor?>>
                         <td class="align-middle" scope="col" style="text-align: center">{{$material->codigo}}</td>
                         <td class="align-middle" scope="col" style="text-align: center">{{$material->nome}} - {{$material->descricao}}</td>
-                        <td class="align-middle" scope="col" style="text-align: center">Und</td>
+                        <td class="align-middle" scope="col" style="text-align: center">{{$material->unidade}}</td>
                         <td class="align-middle" scope="col" style="text-align: center">{{$material->nome_usuario}}</td>
                         <td class="align-middle" scope="col" style="text-align: center">{{$material->quantidade_aprovada}}</td>
                     </tr>
