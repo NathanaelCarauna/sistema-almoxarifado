@@ -49,6 +49,17 @@
                     </span>
                 @enderror
             </div>
+            <div class="form-group col-md-2">
+                <label for="materialUnidade">Unidade</label>
+                <input type="text" class="form-control" autofocus id="materialUnidade"
+                 value="" disabled/>
+
+                @foreach($materiais as $material)
+                    <input id="unidade_{{$material->id}}" type="hidden" 
+                    value="{{$material->unidade}}">
+                @endforeach
+            </div>
+
         </div>
             <div>
                 <div class="form-group col-md-12" class="form-row" style="border-bottom: #cfc5c5 1px solid; padding: 0 0 20px 0; margin-bottom: 20px">
@@ -79,3 +90,15 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
 <script type="text/javascript" src="{{asset('js/movimento/CheckFields.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/movimento/entrada_material.js')}}"></script>
+<script>
+    $(document).ready(function() 
+    {
+        var materialUnidade;
+
+        $("#selectMaterial").change(function() 
+        {
+            materialUnidade = $("#unidade_" + this.value).val();
+            $("#materialUnidade").val(materialUnidade)
+        });
+    });
+</script>

@@ -24,7 +24,7 @@
                     </span>
                 @enderror
             </div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-2">
                 <label for="inputDepositoOrigem">Depósito de origem</label>
                 <select id="inputDepositoOrigem" class="form-control @error('deposito_id_origem') is-invalid @enderror"
                     autofocus name="deposito_id_origem" required>
@@ -39,7 +39,7 @@
                     </span>
                 @enderror
             </div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-2">
                 <label for="inputDepositoDestino">Depósito de destino</label>
                 <select id="inputDepositoDestino" class="form-control @error('deposito_id_destino') is-invalid @enderror"
                     autofocus name="deposito_id_destino" required>
@@ -63,6 +63,15 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
+            </div>
+            <div class="form-group col-md-2">
+                <label for="materialunidade">Unidade</label>
+                <input type="text" class="form-control" autofocus id="materialUnidade" value="" disabled>
+
+                @foreach($materiais as $material)
+                    <input id="unidade_{{$material->id}}" type="hidden" 
+                    value="{{$material->unidade}}">
+                @endforeach
             </div>
         </div>
             <div>
@@ -95,3 +104,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js"></script>
 <script type="text/javascript" src="{{asset('js/movimento/CheckFields.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/movimento/entrada_material.js')}}"></script>
+
+<script>
+    $(document).ready(function()
+    {
+        var materialUnidade;
+
+        $('#selectMaterial').change(function()
+        {
+            materialUnidade = $('#unidade_' + this.value).val();
+            $('#materialUnidade').val(materialUnidade);
+        });
+    });
+</script>
