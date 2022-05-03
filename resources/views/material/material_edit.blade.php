@@ -81,6 +81,7 @@
                     <option @if($material->corredor == 2) selected @endif value="2">2</option>
                     <option @if($material->corredor == 3) selected @endif value="3">3</option>
                     <option @if($material->corredor == 4) selected @endif value="4">4</option>
+                    <option @if($material->corredor == 5) selected @endif value="5">5</option>
                 </select>
             </div>
             <div class="col-md-4">

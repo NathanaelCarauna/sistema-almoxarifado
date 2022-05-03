@@ -55,7 +55,7 @@
                 <input type="text" class="form-control" autofocus id="materialUnidade" disabled  value=""/>
 
                 @foreach($materiais as $material)
-                    <input id="unidade_{{ $material->id }}" type="hidden" 
+                    <input id="unidade_{{ $material->id }}" type="hidden"
                     value="{{ $material->unidade }}">
                 @endforeach
             </div>
@@ -88,11 +88,11 @@
 <script type="text/javascript" src="{{asset('js/movimento/entrada_material.js')}}"></script>
 
 <script>
-    $(document).ready(function() 
+    $(document).ready(function()
     {
         var materialUnidade;
 
-        $("#selectMaterial").change(function() 
+        $("#selectMaterial").change(function()
         {
             materialUnidade = $("#unidade_" + this.value).val();
             $("#materialUnidade").val(materialUnidade)

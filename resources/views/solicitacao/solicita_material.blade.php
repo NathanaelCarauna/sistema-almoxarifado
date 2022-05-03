@@ -46,10 +46,13 @@
                 <select id="selectMaterial" class="selectMaterial" class="form-control" style="width: 95%;">
                     <option></option>
                     @foreach($materiais as $material)
-                        <option data-value="{{$material->id}}">{{$material->codigo}} - {{ $material->nome }} </option>
+                        <option value="{{$material->id}}">{{$material->codigo}} - {{ $material->nome }} </option>
                     @endforeach
                 </select>
             </div>
+            @foreach($materiais as $material)
+                <input type="hidden" id="unidade_{{$material->id}}" value="{{$material->unidade}}">
+            @endforeach
             <div class="form-group col-md-2">
                 <label for="quantMaterial" style="color: #151631; font-family: 'Segoe UI'; font-weight: 700">Quantidade</label>
                 <input type="text" min="1" class="form-control" id="quantMaterial" name="quantidade" value="{{ old('quantidade') }}">
@@ -67,6 +70,7 @@
             <tr>
                 <th scope="col">Material</th>
                 <th scope="col" style="text-align: center">Quantidade</th>
+                <th scope="col" style="text-align: center">Unidade</th>
                 <th scope="col" style="text-align: center">Ações</th>
             </tr>
             </thead>
@@ -133,6 +137,8 @@
                                     @endforeach
                                 </select>
                             </div>
+
+                            <input type="hidden" id="unidade_selected" value="">
                             <div class="form-group col-md-2" style="margin-left: 4%">
                                 <label for="InputQuantEdit" style="color: #151631; font-family: 'Segoe UI'; font-weight: 700">Quantidade</label>
                                 <input type="number" min="1" onkeypress="return onlyNums(event,this);" class="form-control" id="InputQuantEdit" name="InputQuantEdit" value="{{ old('quantidade') }}">
