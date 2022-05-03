@@ -23,8 +23,9 @@ $(function () {
 
 var _row = null;
 
-function construirTable(quantidade) {
+function construirTable(quantidade, unidade) {
     return "<td class=\"quantidadeRow\" style=\"text-align: center\">" + quantidade + "</td>" +
+        "<td class=\"quantidadeRow\" style=\"text-align: center\">" + unidade + "</td>" +
         "<td style=\"text-align: center\">" +
         "<div class=\"dropdown\">" +
         "<button class=\"btn btn-secondary dropdown\" type=\"button\" id=\"dropdownMenuButton\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">" +
@@ -73,9 +74,13 @@ function removerMaterial(ctl) {
 }
 
 function updateRowTable() {
+    var materialId;
+    materialId = $("#selectMaterialEdit").val();
+    $("#unidade_selected").val($("#unidade_" + materialId).val())
     $(_row).after(
         "<tr data-id=" + $("#selectMaterialEdit option:selected").val() + ">" +
-        "<td data-id=" + $("#selectMaterialEdit option:selected").val() + " class=\"materialRow\">" + $("#selectMaterialEdit option:selected").text() + "</td>" + construirTable($("#InputQuantEdit").val())
+        "<td data-id=" + $("#selectMaterialEdit option:selected").val() + " class=\"materialRow\">" + $("#selectMaterialEdit option:selected").text() + "</td>"
+        + construirTable($("#InputQuantEdit").val(), $("#unidade_selected").val())
     );
     $(_row).remove();
     clearFields();
@@ -131,10 +136,13 @@ function setValuesRowInput() {
 }
 
 function addTable() {
+    var materialId;
+    materialId = $("#selectMaterial").val();
+    $("#unidade_selected").val($("#unidade_" + materialId).val())
     if ($("#selectMaterial option:selected").index() > 0 && $("#quantMaterial").val() != '') {
         $("#tableMaterial tbody").append("<tr data-id=" + $("#selectMaterial option:selected").data('value') + ">" +
             "<td data-id=" + $("#selectMaterial option:selected").data('value') + " class=\"materialRow\">" + $("#selectMaterial option:selected").text() + "</td>" +
-            construirTable($("#quantMaterial").val()));
+            construirTable($("#quantMaterial").val(), $("#unidade_selected").val()));
     } else {
         $('#error').slideDown();
         setTimeout(function () {
