@@ -46,7 +46,7 @@
                 <select id="selectMaterial" class="selectMaterial" class="form-control" style="width: 95%;">
                     <option></option>
                     @foreach($materiais as $material)
-                        <option value="{{$material->id}}">{{$material->codigo}} - {{ $material->nome }} </option>
+                        <option data-value="{{$material->id}}">{{$material->codigo}} - {{ $material->nome }} </option>
                     @endforeach
                 </select>
             </div>
