@@ -137,7 +137,7 @@ function setValuesRowInput() {
 
 function addTable() {
     var materialId;
-    materialId = $("#selectMaterial").val();
+    materialId = $("#selectMaterial option:selected").data('value');
     $("#unidade_selected").val($("#unidade_" + materialId).val())
     if ($("#selectMaterial option:selected").index() > 0 && $("#quantMaterial").val() != '') {
         $("#tableMaterial tbody").append("<tr data-id=" + $("#selectMaterial option:selected").data('value') + ">" +
