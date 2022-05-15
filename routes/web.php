@@ -37,6 +37,15 @@ Route::middleware(['auth', 'verified', 'CheckCargoAdministrador'])->group(functi
     Route::resource('solicita', 'SolicitacaoController');
     Route::get('analise_solicitacoes', 'SolicitacaoController@listSolicitacoesAnalise')->name('analise.solicitacoes');
     Route::POST('analise_solicitacoes', 'SolicitacaoController@checkAnaliseSolicitacao')->name('analise.solicitacao');
+
+    Route::get('cadastrar_nota', 'NotasController@cadastrar')->name('cadastrar.nota');
+    Route::get('configurar_notas', 'NotasController@configurar')->name('config.nota');
+    Route::post('alterar_config_notas', 'NotasController@alterarConfig')->name('alterar_config.nota');
+    Route::post('criar_nota', 'NotasController@create')->name('criar.nota');
+    Route::get('nota_materiais_edit', 'NotasController@notaMateriaisEdit')->name('materiais_edit.nota');
+    Route::get('remover_material_nota/{id}', 'NotasController@removerNotaMaterial')->name('remover_material.nota');
+    Route::post('adicionar_material_nota', 'NotasController@adicionarMaterial')->name('adicionar_material.nota');
+
 });
 
 Route::middleware(['auth', 'verified', 'CheckCargoRequerente'])->group(function () {
