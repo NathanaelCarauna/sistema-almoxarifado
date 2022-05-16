@@ -5,13 +5,36 @@ namespace App\Http\Controllers;
 use App\config_nota_fiscal;
 use App\Material;
 use App\MaterialNotas;
-use App\notaFiscal;
+use App\NotaFiscal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class NotasController extends Controller
 {
+
+    public function indexEdit(){
+        return view('notas.notas_index_edit', ['notas' => NotaFiscal::all()]);
+    }
+
+    public function edit($id)
+    {
+        return view('notas.notas_edit', ['nota' => NotaFiscal::findOrFail($id)]);
+    }
+
+    public function update(Request $request)
+    {
+        $nota = NotaFiscal::find($request->nota_id);
+        $nota->codigo = $request->codigo;
+        $nota->cnpj = $request->cnpj;
+        $nota->valor_nota = $request->valor_nota;
+        $nota->update();
+        return redirect(route('materiais_edit.nota', ['nota' => $nota->id]));
+    }
+
+    public function consultar(){
+        return view('notas.notas_consult', ['notas' => NotaFiscal::all()]);
+    }
 
     public function configurar()
     {
@@ -78,6 +101,7 @@ class NotasController extends Controller
 
         $nota->cnpj = $request->cnpj;
         $nota->valor_nota = $request->valor_nota;
+        $nota->codigo = $request->codigo;
         $nota->save();
         return redirect(route('materiais_edit.nota', ['nota' => $nota->id]));
 

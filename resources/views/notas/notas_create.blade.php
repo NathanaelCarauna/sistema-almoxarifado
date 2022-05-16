@@ -135,6 +135,17 @@
 
             <div class="form-group row">
                 <div class="col-md-4">
+                    <label for="codigo">Código</label>
+                    <input type="text" class="form-control @error('codigo') is-invalid @enderror" id="codigo"
+                           name="codigo" placeholder="Código" autofocus autocomplete="codigo" min="1" maxlength="100"
+                           value="{{ old('codigo') }}" required/>
+                    @error('codigo')
+                    <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+                <div class="col-md-4">
                     <label for="codigoMaterial">CNPJ</label>
                     <input type="text" class="form-control @error('cnpj') is-invalid @enderror" id="cnpj"
                            name="cnpj" min="1" maxlength="20" placeholder="Cnpj" value="{{ old('cnpj') }}" autofocus
@@ -147,7 +158,7 @@
                 </div>
                 <div class="col-md-4">
                     <label for="valor_nota">Valor Nota</label>
-                    <input type="text" class="form-control @error('nome') is-invalid @enderror" id="valor_nota"
+                    <input type="text" class="form-control @error('valor_nota') is-invalid @enderror" id="valor_nota"
                            name="valor_nota" placeholder="nota" autofocus autocomplete="valor_nota" min="1" maxlength="100"
                            value="{{ old('valor_nota') }}" required/>
                     @error('valor_nota')

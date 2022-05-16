@@ -16,6 +16,7 @@ class CreateNotaFiscalsTable extends Migration
         Schema::create('nota_fiscals', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('codigo');
             $table->string('cnpj');
             $table->string('valor_nota');
         });
