@@ -121,11 +121,6 @@
         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
             <div>
                 <a data-target="#collapseFour" class="menuEffect selectedMenu"
-                   style="padding: 10px 10px 10px 35px; color: white; text-decoration: none; display: grid"
-                   href="{{ route('cadastrar.nota') }}">
-                    <li>Notas Fiscais</li>
-                </a>
-                <a data-target="#collapseFour" class="menuEffect selectedMenu"
                     style="padding: 10px 10px 10px 35px; color: white; text-decoration: none; display: grid"
                     href="{{ route('material.create') }}">
                     <li>Material</li>
@@ -139,6 +134,11 @@
                     style="padding: 10px 10px 10px 35px; color: white; text-decoration: none; display: grid"
                     href="{{ route('deposito.create') }}">
                     <li>Depósito</li>
+                </a>
+                <a data-target="#collapseFour" class="menuEffect selectedMenu"
+                   style="padding: 10px 10px 10px 35px; color: white; text-decoration: none; display: grid"
+                   href="{{ route('cadastrar.nota') }}">
+                    <li>Notas Fiscais</li>
                 </a>
             </div>
         </div>

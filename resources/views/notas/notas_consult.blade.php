@@ -62,7 +62,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="p-3">
-                            @include('notas.nota_conteudo')
+                            @include('notas.nota_conteudo',['readOnly' => 1])
                         </div>
                         <div class="form-group row p-3">
                             @php $materialNota = \App\MaterialNotas::where('nota_fiscal_id', $nota->id)->get() @endphp

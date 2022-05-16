@@ -128,7 +128,8 @@
         <input type="text" class="form-control @error('codigo') is-invalid @enderror" id="codigo"
                name="codigo" placeholder="Código" autofocus autocomplete="codigo" min="1" maxlength="100"
                @if(isset($nota->codigo)) value="{{$nota->codigo}}"
-               @else value="{{ old('codigo') }}" @endif required/>
+               @else value="{{ old('codigo') }}" @endif
+               @if(isset($readOnly)) disabled @endif required/>
         @error('codigo')
         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -141,6 +142,7 @@
                name="cnpj" min="1" maxlength="20" placeholder="CNPJ"
                @if(isset($nota->cnpj)) value="{{$nota->cnpj}}"
                @else value="{{ old('cnpj') }}" @endif
+               @if(isset($readOnly)) disabled @endif
                autofocus
                required/>
         @error('cnpj')
@@ -155,6 +157,7 @@
                name="valor_nota" placeholder="nota" autofocus autocomplete="valor_nota" min="1" maxlength="100"
                @if(isset($nota->valor_nota)) value="{{$nota->valor_nota}}"
                @else value="{{ old('valor_nota') }}" @endif
+               @if(isset($readOnly)) disabled @endif
                required/>
         @error('valor_nota')
         <span class="invalid-feedback" role="alert">
