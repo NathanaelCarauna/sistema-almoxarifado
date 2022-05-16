@@ -17,6 +17,19 @@
     <div style="border-bottom: #949494 2px solid; padding: 5px; margin-bottom: 10px">
         <h2>NOTA FISCAL - MATERIAIS</h2>
     </div>
+
+    @if(session()->has('sucess'))
+        <div class="alert alert-success alert-dismissible fade show">
+            <strong>{{session('success')}}</strong>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    @endif
+    @if(session()->has('fail'))
+        <div class="alert alert-danger alert-dismissible fade show">
+            <strong>{{session('fail')}}</strong>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    @endif
     @if(isset($materiais_nota))
         <table class="table table-hover">
             <thead>

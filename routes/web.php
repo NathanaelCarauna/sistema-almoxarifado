@@ -86,6 +86,7 @@ Route::middleware('auth', 'verified')->group(function () {
 
     Route::get('observacao_solicitacao/{id}', 'SolicitacaoController@getObservacaoSolicitacao')->name('observacao.solicitacao');
     Route::get('itens_solicitacao_admin/{id}', 'SolicitacaoController@getItemSolicitacaoAdmin')->name('itens.solicitacao.admin');
+    Route::get('notas_material/{id}', 'NotasController@getNotasList')->name('nota.material');
 });
 
 Auth::routes(['verify' => true]);
