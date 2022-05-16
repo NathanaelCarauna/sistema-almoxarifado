@@ -88,7 +88,7 @@ class NotasController extends Controller
             $config->save();
         }
 
-        return redirect(route('config.nota'))->with('sucess', 'Configurações de Notas Fiscais Atualizadas');
+        return redirect(route('config.nota'))->with('success', 'Configurações de Notas Fiscais Atualizadas');
     }
 
 
@@ -102,8 +102,12 @@ class NotasController extends Controller
     public function removerNotaMaterial($id)
     {
         $notaMaterial = MaterialNotas::find($id);
-        $notaMaterial->delete();
-        return redirect()->back()->with('sucess', 'Material Removido Com Sucesso!');
+        if ($notaMaterial->quantidade_atual == 0) {
+            $notaMaterial->delete();
+            return redirect()->back()->with('sucess', 'Material Removido Com Sucesso!');
+        } else {
+            return redirect()->back()->with('fail', 'O Material Já Foi Adicionado Ao Estoque');
+        }
     }
 
     public function create(Request $request)
@@ -118,6 +122,22 @@ class NotasController extends Controller
         return redirect(route('materiais_edit.nota', ['nota' => $nota->id]));
 
 
+    }
+
+    public function getNotasList($id)
+    {
+
+        $notasMaterial = MaterialNotas::where('material_id', $id)->get();
+        $notas = [];
+
+        foreach ($notasMaterial as $notaM) {
+            $nota = NotaFiscal::find($notaM->nota_fiscal_id);
+            if (!in_array([$nota->id, $nota->cnpj], $notas) && $notaM->status == false) {
+                array_push($notas, [$nota->id, $nota->cnpj]);
+            }
+        }
+
+        return json_encode($notas);
     }
 
     public function notaMateriaisEdit(Request $request)
