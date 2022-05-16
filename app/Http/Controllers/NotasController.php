@@ -19,7 +19,8 @@ class NotasController extends Controller
 
     public function edit($id)
     {
-        return view('notas.notas_edit', ['nota' => NotaFiscal::findOrFail($id)]);
+        $config = config_nota_fiscal::all()->first();
+        return view('notas.notas_edit', ['nota' => NotaFiscal::findOrFail($id),'config' => $config]);
     }
 
     public function update(Request $request)
@@ -29,11 +30,22 @@ class NotasController extends Controller
         $nota->cnpj = $request->cnpj;
         $nota->valor_nota = $request->valor_nota;
         $nota->update();
-        return redirect(route('materiais_edit.nota', ['nota' => $nota->id]));
+        return redirect('/nota')->with('success', 'Nota Atualizada Com Sucesso!');
     }
 
     public function consultar(){
-        return view('notas.notas_consult', ['notas' => NotaFiscal::all()]);
+        $config = config_nota_fiscal::all()->first();
+        return view('notas.notas_consult', ['notas' => NotaFiscal::all(),'config' => $config]);
+    }
+
+    public function remover($id)
+    {
+        $nota = NotaFiscal::find($id);
+        if($nota->materiais()->count() == 0){
+            $nota->delete();
+            return redirect()->back()->with('success', 'Nota Removida Com Sucesso!');
+        }
+        return redirect()->back()->with('fail', 'Nota possui materiais associados!');
     }
 
     public function configurar()
