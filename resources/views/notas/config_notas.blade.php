@@ -81,7 +81,7 @@
                            @if(isset($config->cnpj)) value="{{$config->cnpj}}"
                            @else value="{{ old('cnpj') }}" @endif
                            type="text"
-                           name="cnpj" id="cnpj" maxlength="11" autocomplete="cnpj" autofocus
+                           name="cnpj" id="cnpj" maxlength="14" autocomplete="cnpj" autofocus
                            placeHolder="CNPJ">
                     @error('cnpj')
                     <span class="invalid-feedback" role="alert">

@@ -96,6 +96,11 @@
                     href="{{ route('solicitacoe.admin') }}">
                     <li>Solicitações</li>
                 </a>
+                <a data-target="#collapseThree" class="menuEffect selectedMenu" class="selectedMenu"
+                   style="padding: 10px 10px 10px 35px; color: white; text-decoration: none; display: grid"
+                   href="{{route('consult.nota')}}">
+                    <li>Notas Fiscais</li>
+                </a>
             </div>
         </div>
     </div>
@@ -166,6 +171,11 @@
                     style="padding: 10px 10px 10px 35px; color: white; text-decoration: none; display: grid"
                     href="{{ route('deposito.index') }}">
                     <li>Editar Depósito</li>
+                </a>
+                <a data-target="#collapseFive" class="menuEffect selectedMenu"
+                   style="padding: 10px 10px 10px 35px; color: white; text-decoration: none; display: grid"
+                   href="{{route('index.nota')}}">
+                    <li>Editar Nota Fiscal</li>
                 </a>
             </div>
         </div>

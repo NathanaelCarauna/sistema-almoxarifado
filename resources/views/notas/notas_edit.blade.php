@@ -4,21 +4,23 @@
 
 @section('content')
     <div style="border-bottom: #949494 2px solid; padding: 5px; margin-bottom: 10px">
-        <h2>CADASTRAR NOTA FISCAL</h2>
+        <h2>EDITAR NOTA FISCAL</h2>
     </div>
 
-    <form method="POST" action="{{ route('criar.nota') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('update.nota') }}" enctype="multipart/form-data">
         @csrf
 
         @include('notas.nota_conteudo')
 
+        <input type="hidden" value="{{$nota->id}}" name="nota_id">
+
         <div class="form-group row">
-            <div class="col-md-2">
+            <div class="col-md-6">
                 <Button class="btn btn-secondary" type="button"
-                        onclick="if(confirm('Tem certeza que deseja Cancelar o cadastro do Material?')) location.href = '../' ">
+                        onclick="if(confirm('Tem certeza que deseja Cancelar a alteração da Nota Fiscal?')) location.href = '../' ">
                     Cancelar
                 </Button>
-                <button type="submit" class="btn btn-success">Salvar</button>
+                <button type="submit" class="btn btn-success">Atualizar</button>
             </div>
         </div>
     </form>
