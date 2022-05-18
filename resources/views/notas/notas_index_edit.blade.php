@@ -97,7 +97,7 @@
                                             <td>{{$material->quantidade_total}}</td>
                                             <td>@if($material->status == false)
                                                     <strong class="alert-danger">
-                                                        Pedente
+                                                        Pendente
                                                     </strong>
                                                 @else
                                                     <strong class="alert-success">Recebido</strong>

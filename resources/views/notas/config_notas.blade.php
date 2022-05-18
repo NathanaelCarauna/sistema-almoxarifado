@@ -23,7 +23,7 @@
                 <h2 class="h4"> Dados Institucionais / Pessoais </h2>
             </div>
             <div class="form-group">
-                <label for="inscricao_estadual"> Inscrição Estatual </label>
+                <label for="inscricao_estadual"> Inscrição Estadual </label>
                 <input class="form-control  @error('inscricao_estadual') is-invalid @enderror" type="text" name="inscricao_estadual" id="inscricao_estadual"
                        maxlength="100" @if(isset($config->inscricao_estadual)) value="{{$config->inscricao_estadual}}"
                        @else value="{{ old('inscricao_estadual') }}" @endif autocomplete="inscricao_estadual" autofocus
