@@ -40,7 +40,8 @@ class NotasController extends Controller
 
     public function consultar(){
         $config = config_nota_fiscal::all()->first();
-        return view('notas.notas_consult', ['notas' => NotaFiscal::all(),'config' => $config]);
+        $emitentes = Emitente::all();
+        return view('notas.notas_consult', ['notas' => NotaFiscal::all(),'config' => $config,'emitentes'=>$emitentes]);
     }
 
     public function remover($id)
@@ -106,7 +107,11 @@ class NotasController extends Controller
     public function removerNotaMaterial($id)
     {
         $notaMaterial = MaterialNotas::find($id);
+        $notaFiscal = NotaFiscal::find($notaMaterial->nota_fiscal_id);
+        $material = Material::find($notaMaterial->material_id);
         if ($notaMaterial->quantidade_atual == 0) {
+            $notaFiscal->valor_nota -= ($notaMaterial->quantidade_total * $material->valor);
+            $notaFiscal->update();
             $notaMaterial->delete();
             return redirect()->back()->with('sucess', 'Material Removido Com Sucesso!');
         } else {
@@ -171,6 +176,8 @@ class NotasController extends Controller
     public function adicionarMaterial(Request $request)
     {
         $materialNotas = new MaterialNotas();
+        $notaFiscal = NotaFiscal::find($request->nota_fiscal_id);
+        $material = Material::find($request->material_id);
 
         $materialNotas->nota_fiscal_id = $request->nota_fiscal_id;
         $materialNotas->quantidade_total = $request->quantidade_total;
@@ -178,6 +185,8 @@ class NotasController extends Controller
         $materialNotas->quantidade_atual = 0;
         $materialNotas->status = false;
         $materialNotas->valor = $request->valor;
+        $notaFiscal->valor_nota += ($request->quantidade_total * $material->valor);
+        $notaFiscal->update();
         $materialNotas->save();
 
         return redirect(route('materiais_edit.nota', ['nota' => $request->nota_fiscal_id]))->with('sucess', 'Material Adicionado Com Sucesso!');
