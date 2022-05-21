@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\config_nota_fiscal;
+use App\Emitente;
 use App\Material;
 use App\MaterialNotas;
 use App\NotaFiscal;
@@ -20,7 +21,8 @@ class NotasController extends Controller
     public function edit($id)
     {
         $config = config_nota_fiscal::all()->first();
-        return view('notas.notas_edit', ['nota' => NotaFiscal::findOrFail($id),'config' => $config]);
+        $emitentes = Emitente::all();
+        return view('notas.notas_edit', ['nota' => NotaFiscal::findOrFail($id),'config' => $config,'emitentes' => $emitentes]);
     }
 
     public function update(Request $request)
@@ -97,7 +99,8 @@ class NotasController extends Controller
     public function cadastrar()
     {
         $config = config_nota_fiscal::all()->first();
-        return view('notas.notas_create', ['config' => $config]);
+        $emitentes = Emitente::all();
+        return view('notas.notas_create', ['config' => $config, 'emitentes'=>$emitentes]);
 
     }
 
@@ -118,7 +121,6 @@ class NotasController extends Controller
         $nota = new NotaFiscal();
 
         $nota->cnpj = $request->cnpj;
-        $nota->valor_nota = $request->valor_nota;
         $nota->numero = $request->numero;
         $nota->serie = $request->serie;
         $nota->data_emissao = $request->data_emissao;
