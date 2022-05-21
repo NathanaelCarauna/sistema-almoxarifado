@@ -123,6 +123,7 @@ class NotasController extends Controller
         $nota->data_emissao = $request->data_emissao;
         $nota->natureza_operacao = $request->natureza_operacao;
         $nota->emitente_id = $request->emitente_id;
+        $nota->valor_nota = 0;
         $nota->save();
         return redirect(route('materiais_edit.nota', ['nota' => $nota->id]));
 
