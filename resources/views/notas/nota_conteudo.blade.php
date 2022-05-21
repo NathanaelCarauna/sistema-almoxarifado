@@ -227,7 +227,7 @@
                         </a></div>
                 @endif
             </div>
-            <select class="selectEmitente form-control" name="emitente_id" id="emitente" @if(isset($readOnly)) disabled @endif required style="width: 100%;">
+            <select class="@if(!isset($readOnly)) selectEmitente @endif form-control" name="emitente_id" id="emitente" @if(isset($readOnly)) disabled @endif required style="width: 100%;">
                 <option></option>
                 @foreach($emitentes as $emitente)
                     <option @if(isset($nota) && $nota->emitente_id == $emitente->id) selected @endif value="{{$emitente->id}}">{{$emitente->cnpj}}</option>

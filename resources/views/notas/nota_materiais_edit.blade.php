@@ -37,6 +37,7 @@
                 <th scope="col">Material</th>
                 <th scope="col">Quantidade Entregue</th>
                 <th scope="col">Quantidade Total</th>
+                <th scope="col">Valor do Item</th>
                 <th scope="col">Status</th>
                 <th scope="col">Ação</th>
             </tr>
@@ -50,6 +51,7 @@
                     </td>
                     <td>{{$material->quantidade_atual}}</td>
                     <td>{{$material->quantidade_total}}</td>
+                    <td>{{$material->valor}} R$</td>
                     <td>@if($material->status == false)
                             <strong class="alert-danger">
                                 Pendente
