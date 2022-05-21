@@ -40,7 +40,8 @@ class NotasController extends Controller
 
     public function consultar(){
         $config = config_nota_fiscal::all()->first();
-        return view('notas.notas_consult', ['notas' => NotaFiscal::all(),'config' => $config]);
+        $emitentes = Emitente::all();
+        return view('notas.notas_consult', ['notas' => NotaFiscal::all(),'config' => $config,'emitentes'=>$emitentes]);
     }
 
     public function remover($id)
