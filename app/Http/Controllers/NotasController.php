@@ -166,8 +166,12 @@ class NotasController extends Controller
 
     public function notaMateriaisEdit(Request $request)
     {
-        $materiais = Material::all();
         $nota = NotaFiscal::find($request->nota);
+        $notaMaterial = MaterialNotas::where('nota_fiscal_id',$nota->id)->pluck('material_id');
+
+        $materiais = Material::whereNotIn('id',$notaMaterial)->get();
+        
+
 
         $materiais_nota = MaterialNotas::where('nota_fiscal_id', $nota->id)->get();
         return view('notas.nota_materiais_edit', ['nota' => $nota, 'materiais' => $materiais, 'materiais_nota' => $materiais_nota]);
