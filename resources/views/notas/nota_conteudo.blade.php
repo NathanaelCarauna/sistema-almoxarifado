@@ -226,7 +226,7 @@
             <select class="form-control" name="emitente_id" id="emitente">
                 <option disabled selected> Selecione Uma Opção</option>
                 @foreach($emitentes as $emitente)
-                    <option value="{{$emitente->id}}">{{$emitente->cnpj}}</option>
+                    <option @if($nota->emitente_id == $emitente->id) selected @endif value="{{$emitente->id}}">{{$emitente->cnpj}}</option>
                 @endforeach
             </select>
         </div>

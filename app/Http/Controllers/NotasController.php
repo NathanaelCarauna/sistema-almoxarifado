@@ -150,7 +150,7 @@ class NotasController extends Controller
         foreach ($notasMaterial as $notaM) {
             $nota = NotaFiscal::find($notaM->nota_fiscal_id);
             if (!in_array([$nota->id, $nota->cnpj], $notas) && $notaM->status == false) {
-                array_push($notas, [$nota->id, $nota->cnpj]);
+                array_push($notas, [$nota->id, $nota->numero]);
             }
         }
 

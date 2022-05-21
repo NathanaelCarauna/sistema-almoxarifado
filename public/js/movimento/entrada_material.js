@@ -15,6 +15,7 @@ $(function () {
             type: 'GET',
             dataType: 'json',
             success: function (data) {
+                $('#selectNotas').empty();
                 var optionsHtml = "";
                 data.forEach(function (nota) {
                     $('#selectNotas').append("<option value='" + nota[0] + "'>" + nota[1] + "</option>")
