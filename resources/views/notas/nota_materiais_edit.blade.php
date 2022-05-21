@@ -18,7 +18,7 @@
         <h2>NOTA FISCAL - MATERIAIS</h2>
     </div>
 
-    @if(session()->has('sucess'))
+    @if(session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show">
             <strong>{{session('success')}}</strong>
             <button type="button" class="close" data-dismiss="alert">&times;</button>
