@@ -256,3 +256,16 @@
         language: { noResults: () => "Nenhum resultado encontrado.",},
     });
 </script>
+<style>
+    .select2-selection{
+        height: 40%!important;
+    }
+    .select2-selection__rendered{
+
+        margin: 0px;
+        margin-bottom: 15px;
+    }
+    .select2-selection__arrow{
+        height: 20%!important;
+    }
+</style>
