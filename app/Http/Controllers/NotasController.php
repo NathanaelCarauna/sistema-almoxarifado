@@ -26,9 +26,13 @@ class NotasController extends Controller
     public function update(Request $request)
     {
         $nota = NotaFiscal::find($request->nota_id);
-        $nota->codigo = $request->codigo;
+        $nota->numero = $request->numero;
         $nota->cnpj = $request->cnpj;
         $nota->valor_nota = $request->valor_nota;
+        $nota->serie = $request->serie;
+        $nota->data_emissao = $request->data_emissao;
+        $nota->natureza_operacao = $request->natureza_operacao;
+        $nota->emitente_id = $request->emitente_id;
         $nota->update();
         return redirect('/nota')->with('success', 'Nota Atualizada Com Sucesso!');
     }
@@ -64,7 +68,6 @@ class NotasController extends Controller
 
         $config = config_nota_fiscal::all()->first();
         if (isset($config)) {
-            $config->inscricao_estadual = $request->inscricao_estadual;
             $config->nome = $request->nome;
             $config->fone = $request->fone;
             $config->estado = $request->estado;
@@ -76,7 +79,6 @@ class NotasController extends Controller
             $config->update();
         } else {
             $config = new config_nota_fiscal();
-            $config->inscricao_estadual = $request->inscricao_estadual;
             $config->nome = $request->nome;
             $config->fone = $request->fone;
             $config->estado = $request->estado;
@@ -117,7 +119,11 @@ class NotasController extends Controller
 
         $nota->cnpj = $request->cnpj;
         $nota->valor_nota = $request->valor_nota;
-        $nota->codigo = $request->codigo;
+        $nota->numero = $request->numero;
+        $nota->serie = $request->serie;
+        $nota->data_emissao = $request->data_emissao;
+        $nota->natureza_operacao = $request->natureza_operacao;
+        $nota->emitente_id = $request->emitente_id;
         $nota->save();
         return redirect(route('materiais_edit.nota', ['nota' => $nota->id]));
 
@@ -158,6 +164,7 @@ class NotasController extends Controller
         $materialNotas->material_id = $request->material_id;
         $materialNotas->quantidade_atual = 0;
         $materialNotas->status = false;
+        $materialNotas->valor = $request->valor;
         $materialNotas->save();
 
         return redirect(route('materiais_edit.nota', ['nota' => $request->nota_fiscal_id]))->with('sucess', 'Material Adicionado Com Sucesso!');
