@@ -83,7 +83,7 @@
 
                     <div class="pl-4 pr-4 pt-4">
                         <div class="form-row">
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-4">
                                 <label for="material">Selecione o Material</label>
                                 <select class="form-select form-control" aria-label="Default select example" id="material" name="material_id">
                                     <option disabled>Selecione um Material</option>
@@ -94,8 +94,8 @@
                             </div>
 
 
-                            <div class="form-group col-md-6">
-                                <label for="inscricao_estadual"> Quantidade Total</label>
+                            <div class="form-group col-md-4">
+                                <label for="quantidade_total"> Quantidade Total</label>
                                 <input class="form-control  @error('inscricao_estadual') is-invalid @enderror" type="text" name="quantidade_total" id="quantidade_total"
                                        maxlength="100" @if(isset($config->inscricao_estadual)) value="{{$config->inscricao_estadual}}"
                                        @else value="{{ old('inscricao_estadual') }}" @endif autocomplete="quantidade_total" autofocus
@@ -106,6 +106,19 @@
                     </span>
                                 @enderror
                             </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="valor"> Valor</label>
+                                <input class="form-control  @error('valor') is-invalid @enderror" type="text" name="valor" id="valor"
+                                       maxlength="100" autocomplete="valor" autofocus
+                                       placeHolder="Insira o valor do material" required>
+                                @error('valor')
+                                <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                                @enderror
+                            </div>
+
                             <div class="form-group col-md-3">
                                 <button type="submit" class="btn btn-success" style="width: 100%">Adicionar</button>
                             </div>

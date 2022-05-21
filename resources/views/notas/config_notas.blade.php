@@ -22,18 +22,6 @@
             <div class="form-group">
                 <h2 class="h4"> Dados Institucionais / Pessoais </h2>
             </div>
-            <div class="form-group">
-                <label for="inscricao_estadual"> Inscrição Estadual </label>
-                <input class="form-control  @error('inscricao_estadual') is-invalid @enderror" type="text" name="inscricao_estadual" id="inscricao_estadual"
-                       maxlength="100" @if(isset($config->inscricao_estadual)) value="{{$config->inscricao_estadual}}"
-                       @else value="{{ old('inscricao_estadual') }}" @endif autocomplete="inscricao_estadual" autofocus
-                       placeHolder="Inscrição Estadual">
-                @error('inscricao_estadual')
-                <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
-            </div>
 
             <div class="form-row">
                 <div class="form-group col-md-4">
@@ -41,19 +29,20 @@
                     <input class="form-control @error('nome') is-invalid @enderror"
                            @if(isset($config->nome)) value="{{$config->nome}}"
                            @else value="{{ old('nome') }}" @endif autofocus type="text" name="nome"
-                           id="nome" min="1910-01-01">
+                           id="nome" min="1910-01-01" required>
                     @error('nome')
                     <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
+
                 <div class="form-group col-md-4">
                     <label for="fone">{{ __('Fone') }}</label>
                     <input id="fone" type="text" min="0" class="form-control @error('fone') is-invalid @enderror"
                            name="fone" @if(isset($config->fone)) value="{{$config->fone}}"
                            @else value="{{ old('fone') }}" @endif required autocomplete="numTel"
-                           placeholder="(00)00000-0000">
+                           placeholder="(00)00000-0000" required>
 
                     @error('fone')
                     <span class="invalid-feedback" role="alert">
@@ -61,41 +50,16 @@
                         </span>
                     @enderror
                 </div>
-                <div class="form-group col-md-4">
-                    <label for="estado"> Estado </label>
-                    <input type="text" name="estado" id="estado" class="form-control @error('estado') is-invalid @enderror"
-                           @if(isset($config->estado)) value="{{$config->estado}}"
-                           @else value="{{ old('estado') }}" @endif autocomplete="estado" autofocus placeHolder="Estado">
-                    @error('estado')
-                    <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-            </div>
 
-            <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                     <label for="cnpj"> CNPJ </label>
                     <input class="form-control @error('cnpj') is-invalid @enderror"
                            @if(isset($config->cnpj)) value="{{$config->cnpj}}"
                            @else value="{{ old('cnpj') }}" @endif
                            type="text"
                            name="cnpj" id="cnpj" maxlength="14" autocomplete="cnpj" autofocus
-                           placeHolder="CNPJ">
+                           placeHolder="CNPJ" required>
                     @error('cnpj')
-                    <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-
-                <div class="form-group col-md-6">
-                    <label for="cep"> CEP </label>
-                    <input name="cep" id="cep" class="form-control @error('cep') is-invalid @enderror" maxlength="8"
-                           @if(isset($config->cep)) value="{{$config->cep}}"
-                           @else value="{{ old('cep') }}" @endif type="text" autocomplete="cep" autofocus placeHolder="00000000">
-                    @error('cep')
                     <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -106,6 +70,55 @@
             <div class="form-group">
                 <h2 class="h4"> Endereço </h2>
             </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="cep"> CEP </label>
+                    <input name="cep" id="cep" class="form-control @error('cep') is-invalid @enderror" maxlength="8"
+                           @if(isset($config->cep)) value="{{$config->cep}}"
+                           @else value="{{ old('cep') }}" @endif type="text" autocomplete="cep" autofocus placeHolder="00000000" required>
+                    @error('cep')
+                    <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="estado"> Estado </label>
+                    <select class="form-control" id="estado" name="estado">
+                        <option disabled>Selecione</option>
+                        <option value="AC" @if(isset($config->estado) && $config->estado == 'AC') selected @endif>Acre</option>
+                        <option value="AL" @if(isset($config->estado) && $config->estado == 'AL') selected @endif>Alagoas</option>
+                        <option value="AP" @if(isset($config->estado) && $config->estado == 'AP') selected @endif>Amapá</option>
+                        <option value="AM" @if(isset($config->estado) && $config->estado == 'AM') selected @endif>Amazonas</option>
+                        <option value="BA" @if(isset($config->estado) && $config->estado == 'BA') selected @endif>Bahia</option>
+                        <option value="CE" @if(isset($config->estado) && $config->estado == 'CE') selected @endif>Ceará</option>
+                        <option value="DF" @if(isset($config->estado) && $config->estado == 'DF') selected @endif>Distrito Federal</option>
+                        <option value="ES" @if(isset($config->estado) && $config->estado == 'ES') selected @endif>Espirito Santo</option>
+                        <option value="GO" @if(isset($config->estado) && $config->estado == 'GO') selected @endif>Goiás</option>
+                        <option value="MA" @if(isset($config->estado) && $config->estado == 'MA') selected @endif>Maranhão</option>
+                        <option value="MS" @if(isset($config->estado) && $config->estado == 'MS') selected @endif>Mato Grosso do Sul</option>
+                        <option value="MT" @if(isset($config->estado) && $config->estado == 'MT') selected @endif>Mato Grosso</option>
+                        <option value="MG" @if(isset($config->estado) && $config->estado == 'MG') selected @endif>Minas Gerais</option>
+                        <option value="PA" @if(isset($config->estado) && $config->estado == 'PA') selected @endif>Pará</option>
+                        <option value="PB" @if(isset($config->estado) && $config->estado == 'PB') selected @endif>Paraíba</option>
+                        <option value="PR" @if(isset($config->estado) && $config->estado == 'PR') selected @endif>Paraná</option>
+                        <option value="PE" @if(isset($config->estado) && $config->estado == 'PE') selected @endif>Pernambuco</option>
+                        <option value="PI" @if(isset($config->estado) && $config->estado == 'PI') selected @endif>Piauí</option>
+                        <option value="RJ" @if(isset($config->estado) && $config->estado == 'RJ') selected @endif>Rio de Janeiro</option>
+                        <option value="RN" @if(isset($config->estado) && $config->estado == 'RN') selected @endif>Rio Grande do Norte</option>
+                        <option value="RS" @if(isset($config->estado) && $config->estado == 'RS') selected @endif>Rio Grande do Sul</option>
+                        <option value="RO" @if(isset($config->estado) && $config->estado == 'RO') selected @endif>Rondônia</option>
+                        <option value="RR" @if(isset($config->estado) && $config->estado == 'RR') selected @endif>Roraima</option>
+                        <option value="SC" @if(isset($config->estado) && $config->estado == 'SC') selected @endif>Santa Catarina</option>
+                        <option value="SP" @if(isset($config->estado) && $config->estado == 'SP') selected @endif>São Paulo</option>
+                        <option value="SE" @if(isset($config->estado) && $config->estado == 'SE') selected @endif>Sergipe</option>
+                        <option value="TO" @if(isset($config->estado) && $config->estado == 'TO') selected @endif>Tocantins</option>
+                    </select>
+                </div>
+            </div>
+
             <div class="form-group row">
                 <div class="col-md-4">
                     <label for="endereco"> Endereço </label>
@@ -113,7 +126,7 @@
                            @if(isset($config->endereco)) value="{{$config->endereco}}"
                            @else value="{{ old('endereco') }}" @endif
                            autocomplete="endereco" autofocus type="text" name="endereco" id="endereco"
-                           placeHolder="R, Joaquin Tavora, S/N">
+                           placeHolder="R, Joaquin Tavora, S/N" required>
                     @error('endereco')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -126,7 +139,7 @@
                            @if(isset($config->bairro)) value="{{$config->bairro}}"
                            @else value="{{ old('bairro') }}" @endif
                            autocomplete="bairro" autofocus type="text" name="bairro" id="bairro"
-                           placeHolder="Heliopolis">
+                           placeHolder="Heliopolis" required>
                     @error('bairro')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -139,7 +152,7 @@
                            @if(isset($config->municipio)) value="{{$config->municipio}}"
                            @else value="{{ old('municipio') }}" @endif
                            autocomplete="municipio" autofocus type="text" name="municipio" id="municipio"
-                           placeHolder="Garanhuns">
+                           placeHolder="Garanhuns" required>
                     @error('municipio')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -147,16 +160,10 @@
                     @enderror
                 </div>
             </div>
-            <input hidden class="form-control @error('senha') is-invalid @enderror" autofocus
-                   autocomplete="new-password"
-                   type="password" name="password" id="password" placeHolder="" value="almoxarifado123">
-            <input hidden class="form-control @error('confirmar_senha') is-invalid @enderror"
-                   autocomplete="new-password"
-                   autofocus type="password" name="password_confirmation" id="password_confirmation" placeHolder=""
-                   value="almoxarifado123">
             <div class="form-group col-md-12" class="form-row"
                  style="border-bottom: #cfc5c5 1px solid; padding: 0 0 10px 0; margin-bottom: 20px">
             </div>
+
             <Button class="btn btn-secondary" type="button"
                     onclick="if(confirm('Tem certeza que deseja Cancelar a configuração da notas fiscais?')) location.href = '../' ">
                 Cancelar

@@ -10,6 +10,7 @@ use App\NotaFiscal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use PhpParser\Node\Stmt\Echo_;
 
 class NotasController extends Controller
 {
@@ -127,6 +128,16 @@ class NotasController extends Controller
         $nota->save();
         return redirect(route('materiais_edit.nota', ['nota' => $nota->id]));
 
+    }
+
+    public function adicionarEmitente(Request $request)
+    {
+        $emitente = new Emitente();
+        $emitente->inscricao_estadual = $request->inscricao_estadual;
+        $emitente->cnpj = $request->cnpj;
+        $emitente->razao_social = $request->razao_social;
+        $emitente->save();
+        return response()->json(['success'=> 'Emitente Cadastrado com Sucesso!', 'id' => $emitente->id, 'cnpj' => $emitente->cnpj]);
 
     }
 
@@ -145,6 +156,8 @@ class NotasController extends Controller
 
         return json_encode($notas);
     }
+
+
 
     public function notaMateriaisEdit(Request $request)
     {

@@ -52,6 +52,8 @@ Route::middleware(['auth', 'verified', 'CheckCargoAdministrador'])->group(functi
     Route::get('nota/consulta', 'NotasController@consultar')->name('consult.nota');
     Route::get('nota/remover/{id}', 'NotasController@remover')->name('remover.nota');
 
+    Route::post('ajaxAdicionarEmitente', 'NotasController@adicionarEmitente')->name('adicionar_emitente.nota');
+
 });
 
 Route::middleware(['auth', 'verified', 'CheckCargoRequerente'])->group(function () {
