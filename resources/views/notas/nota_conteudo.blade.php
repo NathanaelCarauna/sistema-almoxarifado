@@ -211,27 +211,48 @@
         </div>
     </div>
 
-    <div class="form-group row">
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-8">
+    <div class="form-row">
+        <div @if(isset($readOnly)) class="col-md-6" @else class="col-md-12" @endif>
+            <div class="form-row">
+                <div class="col-md-9">
                     <label for="emitente">Emitente</label>
                 </div>
-                <div class="col-md-4"><a data-toggle="modal" data-target="#emitenteModal" style="float: right; margin-right: 10px"><b style="color: #2d995b">Adicionar Emitente</b>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#29c14e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M3 3h18v18H3zM12 8v8m-4-4h8"/>
-                        </svg>
-                    </a></div>
+                @if(!isset($readOnly))
+                    <div class="col-md-3">
+                        <a data-toggle="modal" data-target="#emitenteModal" style="float: right; margin-right: 10px"><b style="color: #2d995b">Adicionar Emitente</b>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#29c14e" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <path d="M3 3h18v18H3zM12 8v8m-4-4h8"/>
+                            </svg>
+                        </a></div>
+                @endif
             </div>
-            <select class="form-control" name="emitente_id" id="emitente">
-                <option disabled selected> Selecione Uma Opção</option>
+            <select class="selectEmitente form-control" name="emitente_id" id="emitente" @if(isset($readOnly)) disabled @endif required style="width: 100%;">
+                <option></option>
                 @foreach($emitentes as $emitente)
-                    <option @if($nota->emitente_id == $emitente->id) selected @endif value="{{$emitente->id}}">{{$emitente->cnpj}}</option>
+                    <option @if(isset($nota) && $nota->emitente_id == $emitente->id) selected @endif value="{{$emitente->id}}">{{$emitente->cnpj}}</option>
                 @endforeach
             </select>
         </div>
+
+        @if(isset($readOnly))
+            <div class="col-md-6">
+                <label for="valor_nota">Valor da Nota</label>
+                <input class="form-control" value="{{$nota->valor_nota}}" disabled>
+            </div>
+        @endif
     </div>
+
+
     <div class="form-group col-md-12" class="form-row"
          style="border-bottom: #cfc5c5 1px solid; padding: 0 0 10px 0; margin-bottom: 20px">
     </div>
 </div>
+
+
+<script>
+    $('.selectEmitente').select2({
+        placeholder: "Selecione o Emitente Pelo CNPJ.",
+        language: { noResults: () => "Nenhum resultado encontrado.",},
+    });
+</script>

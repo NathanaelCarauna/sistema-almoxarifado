@@ -26,9 +26,9 @@
     <table id="tableNotas" class="table table-hover table-responsive-md">
         <thead style="background-color: #151631; color: white; border-radius: 15px">
         <tr>
-            <th class="text-left" scope="col" style="padding-left: 10px">Código</th>
-            <th scope="col" style="text-align: center">CNPJ</th>
-            <th scope="col" style="text-align: center">Valor</th>
+            <th class="align-middle" scope="col" style="padding-left: 10px">Número</th>
+            <th class="align-middle" scope="col" style="text-align: center">Série</th>
+            <th class="align-middle" scope="col" style="text-align: center">Valor</th>
             <th scope="col" style="text-align: center; width: 3%">Materiais</th>
             <th scope="col" style="text-align: center; width: 3%">Ações</th>
         </tr>
@@ -37,9 +37,9 @@
 
         @forelse($notas as $nota)
             <tr>
-                <td class="text-left" style="text-align: center"> {{ $nota->codigo }} </td>
-                <td style="text-align: center"> {{ $nota->cnpj }} </td>
-                <td style="text-align: center"> {{ $nota->valor_nota }} </td>
+                <td class="text-left" style="text-align: center"> {{ $nota->numero }} </td>
+                <td style="text-align: center"> {{ $nota->serie }} </td>
+                <td style="text-align: center"> {{ $nota->valor_nota }} R$</td>
                 <td style="text-align: center"><button data-toggle="modal" data-target="#notaFiscal{{$nota->id}}" class="btn btn-primary">Detalhes</button> </td>
 
                 <td style="text-align: center">
@@ -83,6 +83,7 @@
                                         <th scope="col">Material</th>
                                         <th scope="col">Quantidade Recebidos</th>
                                         <th scope="col">Quantidade Total</th>
+                                        <th scope="col">Valor do Item</th>
                                         <th scope="col">Status</th>
                                     </tr>
                                     </thead>
@@ -95,6 +96,7 @@
                                             </td>
                                             <td>{{$material->quantidade_atual}}</td>
                                             <td>{{$material->quantidade_total}}</td>
+                                            <td>{{$material->valor}} R$</td>
                                             <td>@if($material->status == false)
                                                     <strong class="alert-danger">
                                                         Pendente

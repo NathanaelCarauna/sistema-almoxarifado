@@ -72,7 +72,7 @@
 
         <div class="form-row" style="border-bottom: #cfc5c5 1px solid; padding: 0 0 20px 0; margin-bottom: 20px">
             <div class="col-md-4">
-            <label for="inputDescricao">Nota Fiscal</label>
+            <label for="selectNotas">Nota Fiscal</label>
             <select class="form-control selectMaterial2" id="selectNotas" name="nota_fiscal_id" style="width: 95%;">
                 <option></option>
             </select>
