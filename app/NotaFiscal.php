@@ -16,4 +16,8 @@ class NotaFiscal extends Model
        return $this->belongsToMany('App\Material', 'material_notas');
     }
 
+    public function emitente(){
+        $this->belongsTo('App\Emitente');
+    }
+
 }
