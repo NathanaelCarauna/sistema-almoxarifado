@@ -26,6 +26,7 @@ class CreateMaterialNotasTable extends Migration
             $table->string('quantidade_total');
             $table->string('quantidade_atual');
             $table->boolean('status');
+            $table->float('valor');
         });
     }
 

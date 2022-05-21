@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateConfigNotaFiscalsTable extends Migration
+class CreateEmitentesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,13 @@ class CreateConfigNotaFiscalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('config_nota_fiscals', function (Blueprint $table) {
+        Schema::create('emitentes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
 
-            $table->string('fone');
-            $table->string('estado');
-            $table->string('cep');
-            $table->string('endereco');
-            $table->string('bairro');
-            $table->string('municipio');
+            $table->string('inscricao_estadual')->nullable();
+            $table->string('razao_social');
             $table->string('cnpj');
-            $table->string('nome');
         });
     }
 
@@ -35,6 +30,6 @@ class CreateConfigNotaFiscalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('config_nota_fiscals');
+        Schema::dropIfExists('emitentes');
     }
 }
