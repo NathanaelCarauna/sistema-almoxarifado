@@ -29,8 +29,6 @@ class NotasController extends Controller
     {
         $nota = NotaFiscal::find($request->nota_id);
         $nota->numero = $request->numero;
-        $nota->cnpj = $request->cnpj;
-        $nota->valor_nota = $request->valor_nota;
         $nota->serie = $request->serie;
         $nota->data_emissao = $request->data_emissao;
         $nota->natureza_operacao = $request->natureza_operacao;
@@ -120,7 +118,6 @@ class NotasController extends Controller
 
         $nota = new NotaFiscal();
 
-        $nota->cnpj = $request->cnpj;
         $nota->numero = $request->numero;
         $nota->serie = $request->serie;
         $nota->data_emissao = $request->data_emissao;
