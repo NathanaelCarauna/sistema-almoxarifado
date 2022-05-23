@@ -167,7 +167,7 @@
                     onclick="if(confirm('Tem certeza que deseja Cancelar a configuração da notas fiscais?')) location.href = '../' ">
                 Cancelar
             </Button>
-            <Button class="btn btn-success" type="submit"> Cadastrar</Button>
+            <Button class="btn btn-success" type="submit"> Salvar</Button>
         </div>
     </form>
 
