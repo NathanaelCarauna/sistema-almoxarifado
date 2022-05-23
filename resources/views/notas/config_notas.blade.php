@@ -25,7 +25,7 @@
 
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label for="nome"> Nome </label>
+                    <label for="nome"> Nome<span style="color: red">*</span></label>
                     <input class="form-control @error('nome') is-invalid @enderror"
                            @if(isset($config->nome)) value="{{$config->nome}}"
                            @else value="{{ old('nome') }}" @endif autofocus type="text" name="nome"
@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="form-group col-md-4">
-                    <label for="fone">{{ __('Fone') }}</label>
+                    <label for="fone">{{ __('Fone') }}<span style="color: red">*</span></label>
                     <input id="fone" type="text" min="0" class="form-control @error('fone') is-invalid @enderror"
                            name="fone" @if(isset($config->fone)) value="{{$config->fone}}"
                            @else value="{{ old('fone') }}" @endif required autocomplete="numTel"
@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="form-group col-md-4">
-                    <label for="cnpj"> CNPJ </label>
+                    <label for="cnpj"> CNPJ<span style="color: red">*</span></label>
                     <input class="form-control @error('cnpj') is-invalid @enderror"
                            @if(isset($config->cnpj)) value="{{$config->cnpj}}"
                            @else value="{{ old('cnpj') }}" @endif
@@ -73,7 +73,7 @@
 
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="cep"> CEP </label>
+                    <label for="cep"> CEP<span style="color: red">*</span></label>
                     <input name="cep" id="cep" class="form-control @error('cep') is-invalid @enderror" maxlength="8"
                            @if(isset($config->cep)) value="{{$config->cep}}"
                            @else value="{{ old('cep') }}" @endif type="text" autocomplete="cep" autofocus placeHolder="00000000" required>
@@ -85,9 +85,8 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="estado"> Estado </label>
+                    <label for="estado"> Estado<span style="color: red">*</span></label>
                     <select class="form-control" id="estado" name="estado">
-                        <option disabled>Selecione</option>
                         <option value="AC" @if(isset($config->estado) && $config->estado == 'AC') selected @endif>Acre</option>
                         <option value="AL" @if(isset($config->estado) && $config->estado == 'AL') selected @endif>Alagoas</option>
                         <option value="AP" @if(isset($config->estado) && $config->estado == 'AP') selected @endif>Amapá</option>
@@ -121,7 +120,7 @@
 
             <div class="form-group row">
                 <div class="col-md-4">
-                    <label for="endereco"> Endereço </label>
+                    <label for="endereco"> Endereço<span style="color: red">*</span></label>
                     <input class="form-control @error('endereco') is-invalid @enderror"
                            @if(isset($config->endereco)) value="{{$config->endereco}}"
                            @else value="{{ old('endereco') }}" @endif
@@ -134,7 +133,7 @@
                     @enderror
                 </div>
                 <div class="col-md-4">
-                    <label for="bairro"> Bairro </label>
+                    <label for="bairro"> Bairro<span style="color: red">*</span></label>
                     <input class="form-control @error('bairro') is-invalid @enderror"
                            @if(isset($config->bairro)) value="{{$config->bairro}}"
                            @else value="{{ old('bairro') }}" @endif
@@ -147,7 +146,7 @@
                     @enderror
                 </div>
                 <div class="col-md-4">
-                    <label for="municipio"> Municipio </label>
+                    <label for="municipio"> Municipio<span style="color: red">*</span></label>
                     <input class="form-control @error('municipio') is-invalid @enderror"
                            @if(isset($config->municipio)) value="{{$config->municipio}}"
                            @else value="{{ old('municipio') }}" @endif

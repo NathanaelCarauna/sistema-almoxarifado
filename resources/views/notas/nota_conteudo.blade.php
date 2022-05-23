@@ -149,11 +149,11 @@
 
     <div class="form-group row">
         <div class="col-md-6">
-            <label for="numero">Número Nota Fiscal</label>
+            <label for="numero">Número<span style="color: red">*</span></label>
             <input type="text" class="form-control @error('numero') is-invalid @enderror" id="numero"
                    name="numero" placeholder="Digite o número da nota fiscal" autofocus autocomplete="numero" min="1" maxlength="100"
-                   @if(isset($nota->codigo)) value="{{$nota->codigo}}"
-                   @else value="{{ old('codigo') }}" @endif
+                   @if(isset($nota->numero)) value="{{$nota->numero}}"
+                   @else value="{{ old('numero') }}" @endif
                    @if(isset($readOnly)) disabled @endif required/>
             @error('numero')
             <span class="invalid-feedback" role="alert">
@@ -163,9 +163,9 @@
         </div>
 
         <div class="col-md-6">
-            <label for="serie">Série</label>
-            <input type="text" class="form-control @error('serie') is-invalid @enderror" id="serie"
-                   name="serie" min="1" maxlength="20" placeholder="Digite o número de serie da nota"
+            <label for="serie">Série<span style="color: red">*</span></label>
+            <input type="number" class="form-control @error('serie') is-invalid @enderror" id="serie"
+                   name="serie" min="3" placeholder="000"
                    @if(isset($nota->serie)) value="{{$nota->serie}}"
                    @else value="{{ old('serie') }}" @endif
                    @if(isset($readOnly)) disabled @endif
@@ -181,11 +181,11 @@
 
     <div class="form-group row">
         <div class="col-md-6">
-            <label for="natureza_operacao">Natureza da Operação</label>
+            <label for="natureza_operacao">Natureza da Operação<span style="color: red">*</span></label>
             <input type="text" class="form-control @error('natureza_operacao') is-invalid @enderror" id="natureza_operacao"
                    name="natureza_operacao" placeholder="Digite a natureza da operação" autofocus autocomplete="natureza_operacao" min="1" maxlength="100"
-                   @if(isset($nota->codigo)) value="{{$nota->codigo}}"
-                   @else value="{{ old('codigo') }}" @endif
+                   @if(isset($nota->natureza_operacao)) value="{{$nota->natureza_operacao}}"
+                   @else value="{{ old('natureza_operacao') }}" @endif
                    @if(isset($readOnly)) disabled @endif required/>
             @error('natureza_operacao')
             <span class="invalid-feedback" role="alert">
@@ -195,8 +195,8 @@
         </div>
 
         <div class="col-md-6">
-            <label for="data_emissao">Data da Emissão</label>
-            <input type="text" class="form-control @error('data_emissao') is-invalid @enderror" id="data_emissao"
+            <label for="data_emissao">Data da Emissão<span style="color: red">*</span></label>
+            <input type="date" class="form-control @error('data_emissao') is-invalid @enderror" id="data_emissao"
                    name="data_emissao" min="1" maxlength="20" placeholder="Digite a data da emissão da nota fiscal"
                    @if(isset($nota->data_emissao)) value="{{$nota->data_emissao}}"
                    @else value="{{ old('data_emissao') }}" @endif
@@ -215,7 +215,7 @@
         <div @if(isset($readOnly)) class="col-md-6" @else class="col-md-12" @endif>
             <div class="form-row">
                 <div class="col-md-9">
-                    <label for="emitente">Emitente</label>
+                    <label for="emitente">Emitente<span style="color: red">*</span></label>
                 </div>
                 @if(!isset($readOnly))
                     <div class="col-md-3">

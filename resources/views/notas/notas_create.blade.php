@@ -38,7 +38,7 @@
 
                         <div class="form-group row">
                             <div class="col-md-12">
-                                <label for="razao_social">Razao Social</label>
+                                <label for="razao_social">Razao Social<span style="color: red">*</span></label>
                                 <input class="form-control" id="razao_social" name="razao_social" value="" placeholder="Digite a Razão Social do emitente">
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                                 <input class="form-control" id="inscricao_estadual" name="inscricao_estadual" value="" placeholder="Digite a Inscrição Estadual do emitente">
                             </div>
                             <div class="col-md-6">
-                                <label for="cnpj">CNPJ</label>
+                                <label for="cnpj">CNPJ<span style="color: red">*</span></label>
                                 <input class="form-control" id="cnpj_emitente" name="cnpj" value="" placeholder="Digite o CNPJ do emitente">
                             </div>
                         </div>
@@ -77,8 +77,8 @@
                 var cnpj = $("#cnpj_emitente").val();
                 var razao_social = $("#razao_social").val();
 
-                if (cnpj == "" || razao_social == "" || inscricao_estadual == "") {
-                    alert('Todos os campos são obrigatórios!');
+                if (cnpj == "" || razao_social == "") {
+                    alert('Os campos CNPJ e Razão Social são Obrigatórios!');
                 } else {
                     $.ajax({
                         type: 'POST',

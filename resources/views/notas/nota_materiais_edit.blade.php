@@ -86,9 +86,9 @@
                     <div class="pl-4 pr-4 pt-4">
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <label for="material">Selecione o Material</label>
-                                <select class="form-select form-control" aria-label="Default select example" id="material" name="material_id">
-                                    <option disabled>Selecione um Material</option>
+                                <label for="material">Selecione o Material<span style="color: red">*</span></label>
+                                <select class="form-control selectMaterial2" aria-label="Default select example" id="material" name="material_id" required style="width: 100%">
+                                    <option></option>
                                     @foreach($materiais as $material)
                                         <option value="{{$material->id}}">{{$material->nome}}</option>
                                     @endforeach
@@ -97,7 +97,7 @@
 
 
                             <div class="form-group col-md-4">
-                                <label for="quantidade_total"> Quantidade Total</label>
+                                <label for="quantidade_total"> Quantidade Total<span style="color: red">*</span></label>
                                 <input class="form-control  @error('inscricao_estadual') is-invalid @enderror" type="text" name="quantidade_total" id="quantidade_total"
                                        maxlength="100" @if(isset($config->inscricao_estadual)) value="{{$config->inscricao_estadual}}"
                                        @else value="{{ old('inscricao_estadual') }}" @endif autocomplete="quantidade_total" autofocus
@@ -110,7 +110,7 @@
                             </div>
 
                             <div class="form-group col-md-4">
-                                <label for="valor"> Valor</label>
+                                <label for="valor"> Valor<span style="color: red">*</span></label>
                                 <input class="form-control  @error('valor') is-invalid @enderror" type="text" name="valor" id="valor"
                                        maxlength="100" autocomplete="valor" autofocus
                                        placeHolder="Insira o valor do material" required>
@@ -135,3 +135,12 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript" src="{{asset('js/material/CheckFields.js')}}"></script>
+
+<script>
+    $(function () {
+        $('.selectMaterial2').select2({
+            placeholder: "Selecione o Material Primeiro.",
+            language: {noResults: () => "Nenhum resultado encontrado.",},
+        });
+    });
+</script>
