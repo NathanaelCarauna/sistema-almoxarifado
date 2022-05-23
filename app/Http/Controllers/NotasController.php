@@ -170,7 +170,7 @@ class NotasController extends Controller
         $notaMaterial = MaterialNotas::where('nota_fiscal_id',$nota->id)->pluck('material_id');
 
         $materiais = Material::whereNotIn('id',$notaMaterial)->get();
-        
+
 
 
         $materiais_nota = MaterialNotas::where('nota_fiscal_id', $nota->id)->get();
