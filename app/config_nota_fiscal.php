@@ -8,9 +8,9 @@ class config_nota_fiscal extends Model
 {
     public static $rules = [
         'nome' => 'bail|min:3|max:50',
-        'cnpj' => 'min:14|max:14',
-        'cep' => 'min:8|max:8',
-        'fone' => 'min:10|max:11'
+        'cnpj' => 'min:18|max:18',
+        'cep' => 'min:9|max:9',
+        'fone' => 'min:13|max:14'
     ];
 
     public static $messages = [
