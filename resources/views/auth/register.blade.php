@@ -127,11 +127,10 @@
 
                 <div class="form-group col-md-6">
                     <label for="setor" class="col-form-label text-md-right"> Setor </label>
-
                     <select id="setor" class="form-control" name="setor">
-                        <option data-value="Administrativo">Administrativo</option>
-                        <option data-value="Academico">Acadêmico</option>
-                        <option data-value="Administrativo/Academico">Administrativo/Acadêmico</option>
+                        <option value="Administrativo">Administrativo</option>
+                        <option value="Academico">Acadêmico</option>
+                        <option value="Administrativo/Academico">Administrativo/Acadêmico</option>
                     </select>
                 </div>
             </div>
