@@ -44,7 +44,7 @@
 {{ $salutation }}
 @else
 @lang('Atenciosamente'),<br>
-{{ 'UPE' }}
+{{ 'UFAPE' }}
 @endif
 
 {{-- Subcopy --}}
