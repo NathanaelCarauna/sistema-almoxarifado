@@ -25,8 +25,8 @@
                         </a>
                     </div>
                     <div style="margin-left: 3px">
-                        <a href="http://ufape.edu.br" target="blank">
-                            <img style="width: 100px" src="{{ asset('/imagens/logo_ufape.png') }}">
+                        <a href="http://www.upe.br/garanhuns/" target="blank">
+                            <img style="width: 100px" src="{{ asset('/imagens/logo_upe.png') }}">
                         </a>
                     </div>
                 </div>
