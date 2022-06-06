@@ -33,8 +33,6 @@ class SolicitacaoController extends Controller
         $materiais = explode(',', $request->dataTableMaterial);
         $quantidades = explode(',', $request->dataTableQuantidade);
 
-        dd($request);
-
         $materiaisCheck = true;
 
         for ($i = 0; $i < count($materiais); ++$i) {
