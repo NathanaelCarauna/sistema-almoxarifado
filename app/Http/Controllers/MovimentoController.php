@@ -42,21 +42,19 @@ class MovimentoController extends Controller
 
     private function notificacao_E_Email($estoque){
         $material = Material::find($estoque->material_id);
-        $usuarios = Usuario::all();
+        $usuarios = Usuario::where('cargo_id', 2)->get();
+
         if($estoque->quantidade < $material->quantidade_minima){
-            for ($j = 1; $j < count($usuarios); ++$j) {
-                if (2 == $usuarios->find($j)->cargo_id) {
-                    $usuario = $usuarios->find($j);
-                    \App\Jobs\emailMaterialEsgotando::dispatch($usuario, $material);
-                    $mensagem = $material->nome . ' em estado critico.';
-                    $notificacao = new Notificacao();
-                    $notificacao->mensagem = $mensagem;
-                    $notificacao->usuario_id = $usuario->id;
-                    $notificacao->material_id = $material->id;
-                    $notificacao->material_quant = $estoque->quantidade;
-                    $notificacao->visto = false;
-                    $notificacao->save();
-                }
+            foreach($usuarios as $usuario){
+                \App\Jobs\emailMaterialEsgotando::dispatch($usuario, $material);
+                $mensagem = $material->nome . ' em estado critico.';
+                $notificacao = new Notificacao();
+                $notificacao->mensagem = $mensagem;
+                $notificacao->usuario_id = $usuario->id;
+                $notificacao->material_id = $material->id;
+                $notificacao->material_quant = $estoque->quantidade;
+                $notificacao->visto = false;
+                $notificacao->save();
             }
         }
     }
