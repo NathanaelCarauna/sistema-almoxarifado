@@ -2,7 +2,7 @@ $(function () {
     $("#nomeMaterial").mask("#", {
         maxlength: true,
         translation: {
-            '#': { pattern: /^[A-Za-záâãéêíóôõúçÁÂÃÉÊÍÓÔÕÚÇ\s]+$/, recursive: true }
+            '#': { pattern: /^[0-9\sA-Za-záâãéêíóôõúçÁÂÃÉÊÍÓÔÕÚÇ\s]$/, recursive: true }
         }
     });
 

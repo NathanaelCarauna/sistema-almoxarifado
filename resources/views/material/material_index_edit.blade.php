@@ -54,7 +54,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a type="button" class="dropdown-item" onclick="location.href = '{{ route('material.edit', ['material' => $material->id]) }}'">Editar</a>
-                            <a type="button" class="dropdown-item" onclick="if(confirm('Tem certeza que deseja Remover o Material?')) location.href='{{route('material.destroy', $material->id)}}'">Remover</a>
+                            <a type="button" class="dropdown-item" onclick="if(confirm('Tem certeza que deseja Remover o Material?')) location.href='{{route('material.deletar', $material->id)}}'">Remover</a>
                         </div>
                     </div>
                 </td>
