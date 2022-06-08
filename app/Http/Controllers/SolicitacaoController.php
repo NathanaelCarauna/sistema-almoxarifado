@@ -21,8 +21,11 @@ class SolicitacaoController extends Controller
         $estoques = Estoque::where('deposito_id', 1)->get();
         $materiais = [];
         foreach ($estoques as $estoque)
-        {
-            array_push($materiais, Material::find($estoque->material_id));
+        {   
+            if($estoque->quantidade > 0)
+            {
+                array_push($materiais, Material::find($estoque->material_id));
+            }
         }
 
         return view('solicitacao.solicita_material', ['materiais' => $materiais]);
