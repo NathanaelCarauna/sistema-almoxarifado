@@ -123,6 +123,11 @@ class SolicitacaoController extends Controller
             session()->forget('status');
         }
 
+        $solicitacao = Solicitacao::where('id', $solicitacaoID)->first();
+        $usuario = Usuario::where('id', $solicitacao->usuario_id)->first();
+        
+        \App\Jobs\emailSolicitacaoNaoAprovada::dispatch($usuario, $solicitacao);
+
         return redirect()->back()->with('success', 'Solicitação cancelada com sucesso!');
     }
 
@@ -193,6 +198,11 @@ class SolicitacaoController extends Controller
         if (session()->exists('status')) {
             session()->forget('status');
         }
+
+        $solicitacao = Solicitacao::where('id', $solicitacaoID)->first();
+        $usuario = Usuario::where('id', $solicitacao->usuario_id)->first();
+        
+        \App\Jobs\emailSolicitacaoAprovada::dispatch($usuario, $solicitacao);
 
         return redirect()->back()->with('success', 'Solicitação Aprovada com sucesso!');
     }
