@@ -295,21 +295,25 @@ class SolicitacaoController extends Controller
     {
         $itens = ItemSolicitacao::where('solicitacao_id', '=', $id)->where('quantidade_aprovada', '!=', null)->get();
         $materiaisID = array_column($itens->toArray(), 'material_id');
-        $materiaisNome = Material::select('nome')->whereIn('id', $materiaisID)->get();
         $quantAprovadas = array_column($itens->toArray(), 'quantidade_aprovada');
 
         $estoque = Estoque::wherein('material_id', $materiaisID)->where('deposito_id', 1)->orderBy('material_id', 'asc')->get();
 
         $checkQuant = true;
         $errorMessage = [];
+        
+        foreach($itens as $item){
+            $estoqueItem = Estoque::where('material_id', $item->material_id)->where('deposito_id', 1)->first();
+            $materialNome = Material::where('id', $item->material_id)->first();
 
-        for ($i = 0; $i < count($materiaisID); ++$i) {
-            if (($estoque[$i]->quantidade - $quantAprovadas[$i]) < 0) {
+            if(($estoqueItem->quantidade - $item->quantidade_aprovada) < 0){
                 $checkQuant = false;
-                $message = $materiaisNome[$i]->nome.' Disponível('.$estoque[$i]->quantidade.')';
+                $message = $materialNome->nome.' quantidade disponível('.$estoqueItem->quantidade.')'. ' - quantidade aprovada('.$item->quantidade_aprovada.')';
                 array_push($errorMessage, $message);
             }
         }
+
+        
 
         if ($checkQuant) {
             $materiais = Material::all();
@@ -345,9 +349,9 @@ class SolicitacaoController extends Controller
 
             return redirect()->back()->with('success', 'Material(is) entregue(s) com sucesso!');
         }
-        array_push($errorMessage, 'Faça transferências para o depósito de atendimento');
+        array_push($errorMessage, 'Reabasteça o estoque do depósito de atendimento para realizar a entrega!');
 
-        return redirect()->back()->with('error', $errorMessage);
+        return redirect()->back()->withErrors($errorMessage);
     }
 
     public function cancelarEntregaMataeriais($id)
