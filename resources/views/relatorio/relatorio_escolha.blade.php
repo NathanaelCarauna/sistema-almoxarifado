@@ -36,6 +36,7 @@
                         <option value="2">Materiais Não Movimentados</option>
                         <option value="3">Saída de Material(Solicitação)</option>
                         <option value="4">Materiais mais movimentados(Solicitação)</option>
+                        <option value="5">Solicitações não entregues</option>
                     </select>
                     @error('tipo_relatorio')
                         <span class="invalid-feedback" role="alert">
