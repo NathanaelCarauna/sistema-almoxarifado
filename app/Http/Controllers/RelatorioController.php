@@ -52,7 +52,7 @@ class RelatorioController extends Controller
         } elseif (3 == $request->tipo_relatorio) {
             $materiais = DB::select("select mat.nome, mat.codigo, mat.descricao, mat.unidade, item.quantidade_aprovada, usuario.nome as nome_usuario
             from materials mat, item_solicitacaos item, historico_statuses status, solicitacaos soli, usuarios usuario
-            where (status.created_at between '".$data_inicio."' and '".$data_fim."') and item.solicitacao_id = soli.id
+            where (status.data_finalizado between '".$data_inicio."' and '".$data_fim."') and item.solicitacao_id = soli.id
             and status.solicitacao_id = soli.id and soli.usuario_id = usuario.id and status.data_aprovado is not null and status.data_finalizado is not null
             and status = 'Entregue' and mat.id = item.material_id order by mat.id");
         } elseif (2 == $request->tipo_relatorio) {
