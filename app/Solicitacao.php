@@ -7,10 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Solicitacao extends Model
 {
     public function itensSolicitacoes(){
-        $this->hasMany('App\ItemSolicitacao');
+        return $this->hasMany('App\ItemSolicitacao');
     }
-
     public function historicoStatus(){
-        $this->hasMany('App\HistoricoStatus');
+        return $this->hasMany('App\HistoricoStatus');
     }
 }

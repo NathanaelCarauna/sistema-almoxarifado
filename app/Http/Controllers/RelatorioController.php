@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Solicitacao;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -36,13 +37,12 @@ class RelatorioController extends Controller
         $data_inicio = date('Y-m-d H:i:s', strtotime($request->data_inicio));
         $data_fim = date('Y-m-d H:i:s', strtotime($request->data_fim.' +1 day'));
         $materiais = '';
+        $solicitacoes = '';
 
         if (5 == $request->tipo_relatorio) {
-        $materiais = DB::select("select mat.nome, mat.codigo, mat.descricao, mat.unidade, item.quantidade_aprovada, usuario.nome as nome_usuario
-                from materials mat, item_solicitacaos item, historico_statuses status, solicitacaos soli, usuarios usuario
-                where (status.created_at between '".$data_inicio."' and '".$data_fim."') and item.solicitacao_id = soli.id
-                and status.solicitacao_id = soli.id and soli.usuario_id = usuario.id and status.data_aprovado is not null and (status = 'Aprovado' or status = 'Aprovado Parcialmente')
-                and mat.id = item.material_id order by mat.id");
+            $solicitacoes = Solicitacao::join('historico_statuses', 'solicitacaos.id', '=', 'historico_statuses.solicitacao_id')
+                ->where('historico_statuses.data_finalizado', '>=', $data_inicio)->where('historico_statuses.data_finalizado', '<=', $data_fim)
+                ->where('historico_statuses.status', '=', 'Entregue')->get();
         } elseif (4 == $request->tipo_relatorio) {
             $materiais = DB::select("select mat.nome, mat.codigo, mat.descricao, mat.unidade, item.quantidade_solicitada, usuario.nome as nome_usuario, count(*)
             from materials mat, item_solicitacaos item, historico_statuses status, solicitacaos soli, usuarios usuario
@@ -75,12 +75,12 @@ class RelatorioController extends Controller
         $data_inicio = date('d/m/Y', strtotime($request->data_inicio));
         $data_fim = date('d/m/Y', strtotime($request->data_fim));
 
-        if (4 == $request->tipo_relatorio) {
+        if (5 == $request->tipo_relatorio) {
+            $pdf = PDF::loadView('/relatorio/relatorio_solicitacoes_entregues', compact('solicitacoes', 'datas'));
+            $nomePDF = 'Relatório_Solicitações_Entregues_De_' . $data_inicio . '_A_' . $data_fim . '.pdf';
+        } elseif (4 == $request->tipo_relatorio) {
             $pdf = PDF::loadView('/relatorio/relatorio_materiais_mais_movimentados_solicitacoes', compact('materiais'));
             $nomePDF = 'Relatório_Materiais_Mais_Movimentados_Solicitação_Semana.pdf';
-        } elseif (5 == $request->tipo_relatorio) {
-            $pdf = PDF::loadView('/relatorio/relatorio_solicitacoes_nao_entregues', compact('materiais', 'datas'));
-            $nomePDF = 'Relatório_Solicitações_Não_Entregues_De_'.$data_inicio.'_A_'.$data_fim.'.pdf';
         } elseif (3 == $request->tipo_relatorio) {
             $pdf = PDF::loadView('/relatorio/relatorio_saida_materiais_solicitacoes', compact('materiais', 'datas'));
             $nomePDF = 'Relatório_Saída_Materiais_Solicitações_De_'.$data_inicio.'_A_'.$data_fim.'.pdf';

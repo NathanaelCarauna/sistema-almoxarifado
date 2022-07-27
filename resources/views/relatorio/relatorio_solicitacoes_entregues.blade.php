@@ -12,34 +12,44 @@
 </head>
 <body>
 <img align="right" src="{{ public_path('imagens/ufape_rel.png') }}" width="200px" height="100px">
-    <h2>RELATÓRIO DE SOLICITAÇÕES NÃO ENTREGUES</h2>
+    <h2>RELATÓRIO DE SOLICITAÇÕES ENTREGUES</h2>
     <h4>RELATÓRIO REFERENTE AO PERÍODO: {{ date('d/m/Y',  strtotime($datas[0])) }} A {{ date('d/m/Y',  strtotime($datas[1])) }}</h4>
 
     <table id="tableMateriais" style="width: 100%">
         <thead style="background-color: lightgray; border-radius: 15px">
             <tr>
-                <th class="align-middle" scope="col">Código</th>
-                <th class="align-middle" scope="col" style="text-align: center" width="340px">Descrição</th>
-                <th class="align-middle" scope="col">Unidade</th>
                 <th class="align-middle" scope="col">Requerente</th>
+                <th class="align-middle" scope="col" style="text-align: center" width="340px">Materiais</th>
+                <th class="align-middle" scope="col">Unidade</th>
                 <th class="align-middle" scope="col">Quantidade</th>
             </tr>
         </thead>
         <tbody>
-            @if(count($materiais) > 0)
+            @if(count($solicitacoes) > 0)
             <?php
                 $cinza = '#ddd';
                 $branco = '#fff';
                 $cor = $branco;
                 $ultimaCor = $cor;
             ?>
-                @foreach($materiais as $material)
+                @foreach($solicitacoes as $solicitacao)
                     <tr style="background-color:{{ $cor }}" <?php $ultimaCor = $cor?>>
-                        <td class="align-middle" scope="col" style="text-align: center">{{$material->codigo}}</td>
-                        <td class="align-middle" scope="col" style="text-align: center">{{$material->nome}} - {{$material->descricao}}</td>
-                        <td class="align-middle" scope="col" style="text-align: center">{{$material->unidade}}</td>
-                        <td class="align-middle" scope="col" style="text-align: center">{{$material->nome_usuario}}</td>
-                        <td class="align-middle" scope="col" style="text-align: center">{{$material->quantidade_aprovada}}</td>
+                        <td class="align-middle" scope="col" style="text-align: center">{{$solicitacao->receptor}}</td>
+                        <td class="align-middle" scope="col" style="text-align: center">
+                            @foreach($solicitacao->itensSolicitacoes as $item)
+                                {{$item->material->nome}} <br>
+                            @endforeach
+                        </td>
+                        <td class="align-middle" scope="col" style="text-align: center">
+                            @foreach($solicitacao->itensSolicitacoes as $item)
+                                {{$item->material->unidade}} <br>
+                            @endforeach
+                        </td>
+                        <td class="align-middle" scope="col" style="text-align: center">
+                            @foreach($solicitacao->itensSolicitacoes as $item)
+                                {{$item->quantidade_aprovada}} <br>
+                            @endforeach
+                        </td>
                     </tr>
                     @if($ultimaCor == $cinza)
                         <?php $cor = $branco?>
