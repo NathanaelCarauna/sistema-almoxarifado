@@ -38,11 +38,23 @@ class RelatorioController extends Controller
         $data_fim = date('Y-m-d H:i:s', strtotime($request->data_fim.' +1 day'));
         $materiais = '';
         $solicitacoes = '';
+        $quantidades = [];
 
         if (5 == $request->tipo_relatorio) {
             $solicitacoes = Solicitacao::join('historico_statuses', 'solicitacaos.id', '=', 'historico_statuses.solicitacao_id')
                 ->where('historico_statuses.data_finalizado', '>=', $data_inicio)->where('historico_statuses.data_finalizado', '<=', $data_fim)
                 ->where('historico_statuses.status', '=', 'Entregue')->get();
+
+            foreach($solicitacoes as $solicitacao) {
+                foreach($solicitacao->itensSolicitacoes as $item){
+                    if(array_key_exists($item->material->nome, $quantidades)){
+                        $quantidades[$item->material->nome][1] += $item->quantidade_aprovada;
+                    } else{
+                        $quantidades[$item->material->nome] = [$item->material->unidade, $item->quantidade_aprovada];
+                    }
+                }
+            }
+            ksort($quantidades);
         } elseif (4 == $request->tipo_relatorio) {
             $materiais = DB::select("select mat.nome, mat.codigo, mat.descricao, mat.unidade, item.quantidade_solicitada, usuario.nome as nome_usuario, count(*)
             from materials mat, item_solicitacaos item, historico_statuses status, solicitacaos soli, usuarios usuario
@@ -76,7 +88,7 @@ class RelatorioController extends Controller
         $data_fim = date('d/m/Y', strtotime($request->data_fim));
 
         if (5 == $request->tipo_relatorio) {
-            $pdf = PDF::loadView('/relatorio/relatorio_solicitacoes_entregues', compact('solicitacoes', 'datas'));
+            $pdf = PDF::loadView('/relatorio/relatorio_solicitacoes_entregues', compact('solicitacoes', 'datas', 'quantidades'));
             $nomePDF = 'Relatório_Solicitações_Entregues_De_' . $data_inicio . '_A_' . $data_fim . '.pdf';
         } elseif (4 == $request->tipo_relatorio) {
             $pdf = PDF::loadView('/relatorio/relatorio_materiais_mais_movimentados_solicitacoes', compact('materiais'));

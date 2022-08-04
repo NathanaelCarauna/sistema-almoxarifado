@@ -60,5 +60,40 @@
             @endif
         </tbody>
     </table>
+
+    <br>
+
+    <table id="tableMateriais" style="width: 100%">
+        <thead style="background-color: lightgray; border-radius: 15px">
+            <tr>
+                <th class="align-middle" scope="col">Materiais</th>
+                <th class="align-middle" scope="col">Unidade</th>
+                <th class="align-middle" scope="col">Quantidade total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(count($solicitacoes) > 0)
+            <?php
+                $cinza = '#ddd';
+                $branco = '#fff';
+                $cor = $branco;
+                $ultimaCor = $cor;
+            ?>
+
+                @foreach($quantidades as $key => $quantidade)
+                    <tr style="background-color:{{ $cor }}" <?php $ultimaCor = $cor?>>
+                        <td class="align-middle" scope="col" style="text-align: center">{{$key}}</td>
+                        <td class="align-middle" scope="col" style="text-align: center">{{$quantidade[0]}}</td>
+                        <td class="align-middle" scope="col" style="text-align: center">{{$quantidade[1]}}</td>
+                    </tr>
+                    @if($ultimaCor == $cinza)
+                        <?php $cor = $branco?>
+                    @elseif($ultimaCor == $branco)
+                        <?php $cor = $cinza?>
+                    @endif
+                @endforeach
+            @endif
+        </tbody>
+    </table>
 </body>
 </html>
