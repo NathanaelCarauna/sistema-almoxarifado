@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Solicitacao;
+use App\Material;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,7 @@ class RelatorioController extends Controller
 
     public function gerarRelatorioMateriais(Request $request)
     {
-        if (4 != $request->tipo_relatorio) {
+        if ($request->tipo_relatorio != 4 && $request->tipo_relatorio != 6) {
             Validator::make(
                 $request->all(),
                 [
@@ -40,7 +41,12 @@ class RelatorioController extends Controller
         $solicitacoes = '';
         $quantidades = [];
 
-        if (5 == $request->tipo_relatorio) {
+        if (6 == $request->tipo_relatorio) {
+            $materiais = Material::join('estoques', 'materials.id', '=', 'estoques.material_id')
+                ->where('estoques.deposito_id', '=', 2)->whereColumn('estoques.quantidade', '<', 'materials.quantidade_minima')->get();
+
+            //dd($materiais);
+        } else if (5 == $request->tipo_relatorio) {
             $solicitacoes = Solicitacao::join('historico_statuses', 'solicitacaos.id', '=', 'historico_statuses.solicitacao_id')
                 ->where('historico_statuses.data_finalizado', '>=', $data_inicio)->where('historico_statuses.data_finalizado', '<=', $data_fim)
                 ->where('historico_statuses.status', '=', 'Entregue')->get();
@@ -87,7 +93,10 @@ class RelatorioController extends Controller
         $data_inicio = date('d/m/Y', strtotime($request->data_inicio));
         $data_fim = date('d/m/Y', strtotime($request->data_fim));
 
-        if (5 == $request->tipo_relatorio) {
+        if (6 == $request->tipo_relatorio) {
+            $pdf = PDF::loadView('/relatorio/relatorio_materiais_em_estado_critico', compact('materiais', 'datas'));
+            $nomePDF = 'Relatório_Materiais_Em_Estado_Critico.pdf';
+        } else if (5 == $request->tipo_relatorio) {
             $pdf = PDF::loadView('/relatorio/relatorio_solicitacoes_entregues', compact('solicitacoes', 'datas', 'quantidades'));
             $nomePDF = 'Relatório_Solicitações_Entregues_De_' . $data_inicio . '_A_' . $data_fim . '.pdf';
         } elseif (4 == $request->tipo_relatorio) {
