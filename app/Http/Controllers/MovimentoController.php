@@ -67,10 +67,10 @@ class MovimentoController extends Controller
         $movimentoEntrada->operacao = $request['operacao'];
         $movimentoEntrada->descricao = $request['descricao'];
 
-        $estoque = DB::table('estoques')->where([
+        $estoque = Estoque::where([
             ['deposito_id', '=', $request['deposito_id']],
             ['material_id', '=', $request['material_id']],
-        ])->get()->first();
+        ])->first();
 
         if (null == $estoque) {
             $estoque = new Estoque();
@@ -79,15 +79,18 @@ class MovimentoController extends Controller
             $estoque->deposito_id = $request['deposito_id'];
 
             $this->notificacao_E_Email($estoque);
+
+            $estoque->save();
+
         } else {
-            $estoque = Estoque::findOrFail($estoque->id);
             $estoque->quantidade += $request['quantidade'];
 
             $this->notificacao_E_Email($estoque);
+
+            $estoque->update();
         }
 
         $movimentoEntrada->save();
-        $estoque->save();
 
         $itemMovimento = new itemMovimento();
         $itemMovimento->quantidade = $request['quantidade'];
@@ -153,10 +156,10 @@ class MovimentoController extends Controller
         $movimentoEntrada->operacao = '0';
         $movimentoEntrada->descricao = $request['descricao'];
 
-        $estoqueSaida = DB::table('estoques')->where([
+        $estoqueSaida = Estoque::where([
             ['deposito_id', '=', $request['deposito_id_origem']],
             ['material_id', '=', $request['material_id']],
-        ])->get()->first();
+        ])->first();
 
         if (null != $estoqueSaida) {
             $estoqueSaida = Estoque::findOrFail($estoqueSaida->id);
@@ -173,10 +176,10 @@ class MovimentoController extends Controller
             return redirect()->route('movimento.transferenciaCreate');
         }
 
-        $estoqueEntrada = DB::table('estoques')->where([
+        $estoqueEntrada = Estoque::where([
             ['deposito_id', '=', $request['deposito_id_destino']],
             ['material_id', '=', $request['material_id']],
-        ])->get()->first();
+        ])->first();
 
         if (null == $estoqueEntrada) {
             $estoqueEntrada = new Estoque();
@@ -184,16 +187,16 @@ class MovimentoController extends Controller
             $estoqueEntrada->material_id = $request['material_id'];
             $estoqueEntrada->deposito_id = $request['deposito_id_destino'];
             $this->notificacao_E_Email($estoqueEntrada);
+            $estoqueEntrada->save();
         } else {
-            $estoqueEntrada = Estoque::findOrFail($estoqueEntrada->id);
             $estoqueEntrada->quantidade += $request['quantidade'];
             $this->notificacao_E_Email($estoqueEntrada);
+            $estoqueEntrada->update();
         }
 
         $movimentoSaida->save();
         $estoqueSaida->save();
         $movimentoEntrada->save();
-        $estoqueEntrada->save();
 
         $itemMovimentoSaida = new itemMovimento();
         $itemMovimentoSaida->quantidade = $request['quantidade'];
