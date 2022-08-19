@@ -37,6 +37,8 @@ Route::middleware(['auth', 'verified', 'CheckCargoAdministrador'])->group(functi
     Route::resource('solicita', 'SolicitacaoController');
     Route::get('analise_solicitacoes', 'SolicitacaoController@listSolicitacoesAnalise')->name('analise.solicitacoes');
     Route::POST('analise_solicitacoes', 'SolicitacaoController@checkAnaliseSolicitacao')->name('analise.solicitacao');
+
+    Route::get('deletar_estoque/{id}', 'DepositoController@deletarEstoque');
 });
 
 Route::middleware(['auth', 'verified', 'CheckCargoRequerente'])->group(function () {
