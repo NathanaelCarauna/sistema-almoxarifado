@@ -6,7 +6,7 @@
     <div style="border-bottom: #949494 2px solid; padding-bottom: 5px; margin-bottom: 10px">
         <h2>TRANSFERÊNCIA DE MATERIAL</h2>
     </div>
-    <form method="POST" action="{{ route('movimento.transferenciaStore') }}">
+    <form id="form_transf" method="POST" action="{{ route('movimento.transferenciaStore') }}">
         @csrf
         <div class="form-row">
             <div class="form-group col-md-4">
@@ -69,7 +69,7 @@
                 <input type="text" class="form-control" autofocus id="materialUnidade" value="" disabled>
 
                 @foreach($materiais as $material)
-                    <input id="unidade_{{$material->id}}" type="hidden" 
+                    <input id="unidade_{{$material->id}}" type="hidden"
                     value="{{$material->unidade}}">
                 @endforeach
             </div>
@@ -96,7 +96,7 @@
         @endif
 
         <Button class="btn btn-secondary" type="button" onclick="location.href = '../' "> Cancelar </Button>
-        <button class="btn btn-success" type="submit">Transferir</button>
+        <button id="transferir" class="btn btn-success" type="submit">Transferir</button>
     </form>
 @endsection
 
@@ -114,6 +114,16 @@
         {
             materialUnidade = $('#unidade_' + this.value).val();
             $('#materialUnidade').val(materialUnidade);
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function()
+    {
+        $("#transferir").on("click", function(){
+            $("#form_transf").submit();
+            $(this).prop("disabled", true);
         });
     });
 </script>
