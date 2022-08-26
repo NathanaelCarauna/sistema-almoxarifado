@@ -3,6 +3,18 @@
 @section('title') Depositos @endsection
 
 @section('content')
+    @if(session()->has('fail'))
+        <div class="alert alert-danger alert-dismissible fade show">
+            <strong>{{session('fail')}}</strong>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    @elseif(session()->has('sucess'))
+        <div class="alert alert-success alert-dismissible fade show">
+            <strong>{{session('sucess')}}</strong>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    @endif
+
     <div style="border-bottom: #949494 2px solid; padding-bottom: 5px; margin-bottom: 10px">
         <h2>CONSULTAR DEPÓSITOS</h2>
     </div>
@@ -22,6 +34,7 @@
              <tr>
                 <th scope="col" style="padding-left: 10px">Material</th>
                 <th scope="col" style="text-align: center">Quantidade</th>
+                <th scope="col" style="text-align: center">Ações</th>
             </tr>
         </thead>
         <tbody id="listaEstoque"></tbody>
@@ -36,7 +49,7 @@
             $.get('/get_estoques/' + deposito_id, function (estoques) {
                 $('#listaEstoque').empty();
                 $.each(estoques, function (key, value) {
-                    $('#listaEstoque').append(`<tr><td>${value.nome}</td><td style=\"text-align: center\">${value.quantidade}</td></tr>`);
+                    $('#listaEstoque').append(`<tr><td>${value.nome}</td><td style=\"text-align: center\">${value.quantidade}</td><td style=\"text-align: center\"><a href="deletar_estoque/${value.id}">Deletar</a><td></tr>`);
                 });
             });
         });

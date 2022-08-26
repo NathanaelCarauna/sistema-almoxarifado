@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Deposito;
 use App\Estoque;
+use App\itemMovimento;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -26,9 +27,28 @@ class DepositoController extends Controller
 
     public function getEstoques($deposito_id)
     {
-        $estoques = DB::select('Select mat.nome, e.quantidade from estoques e, Materials mat where e.deposito_id = ? and mat.id = e.material_id', [$deposito_id]);
+        $estoques = DB::select('Select mat.nome, e.quantidade, e.id from estoques e, Materials mat where e.deposito_id = ? and mat.id = e.material_id', [$deposito_id]);
 
         return response()->json($estoques);
+    }
+
+    public function deletarEstoque($id)
+    {
+        $estoque = Estoque::find($id);
+        $itemMovimento = itemMovimento::where('estoque_id', '=', $estoque->id)->get();
+        if($estoque->quantidade == 0){
+            foreach ($itemMovimento as $item)
+            {
+                $item->delete();
+            }
+            $estoque->forceDelete();
+
+            return redirect()->back()->with(['sucess' => 'Estoque deletado com sucesso!']);
+        } else
+        {
+            return redirect()->back()->with(['fail' => 'Não é possivel deletar esse estoque, ele precisa estar zerado!']);
+        }
+
     }
 
     public function create()
