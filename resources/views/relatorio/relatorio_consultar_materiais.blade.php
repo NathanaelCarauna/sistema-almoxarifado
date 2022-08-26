@@ -18,7 +18,7 @@
     <thead style="background-color: lightgray; border-radius: 15px">
     <tr>
         <th class="align-middle" scope="col">Código</th>
-        <th class="align-middle" scope="col" style="text-align: center" width="340px">Material - Descriçãogit</th>
+        <th class="align-middle" scope="col" style="text-align: center" width="340px">Material - Descrição</th>
         <th class="align-middle" scope="col">Qtd Total</th>
         <th class="align-middle" scope="col">Qtd Mínima</th>
         <th class="align-middle" scope="col">Localização</th>
