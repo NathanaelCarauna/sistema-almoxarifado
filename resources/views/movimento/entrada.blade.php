@@ -7,7 +7,7 @@
         <h2>ENTRADA DE MATERIAL</h2>
     </div>
 
-    <form method="POST" action="{{ route('movimento.entradaStore') }}">
+    <form id="form_entrada" method="POST" action="{{ route('movimento.entradaStore') }}">
         @csrf
         <div class="form-row">
             <div class="form-group col-md-4">
@@ -77,7 +77,7 @@
         <input type="hidden" name="operacao" value="0">
 
         <Button class="btn btn-secondary" type="button" onclick="location.href = '../' "> Cancelar </Button>
-        <button class="btn btn-success" type="submit">Registrar Estoque</button>
+        <button id="entrada" class="btn btn-success" type="submit">Registrar Estoque</button>
     </form>
 
 @endsection

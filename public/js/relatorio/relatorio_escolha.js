@@ -9,7 +9,7 @@ $(function() {
 $(function() {
     $("#tipo_relatorio").change(function()
     {
-        if($("#tipo_relatorio").val() == 4 || $("#tipo_relatorio").val() == 6) {
+        if($("#tipo_relatorio").val() == 4 || $("#tipo_relatorio").val() == 6 || $("#tipo_relatorio").val() == 7) {
             $("#data_inicio").hide();
             $("#data_fim").hide();
         } else {

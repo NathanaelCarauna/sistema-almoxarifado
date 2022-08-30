@@ -27,6 +27,7 @@
                         <option value="4">Materiais mais movimentados(Solicitação)</option>
                         <option value="5">Solicitações entregues</option>
                         <option value="6">Materiais em estado crítico</option>
+                        <option value="7">Consultar Materiais</option>
 
                     </select>
                     @error('tipo_relatorio')
