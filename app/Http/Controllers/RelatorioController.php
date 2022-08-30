@@ -46,11 +46,9 @@ class RelatorioController extends Controller
         if (7 == $request->tipo_relatorio) {
             $materiais = Material::all()->sortBy('id');
             $estoques = Estoque::all();
-
-            //dd($materiais);
         }else if (6 == $request->tipo_relatorio) {
             $materiais = Material::join('estoques', 'materials.id', '=', 'estoques.material_id')
-                ->where('estoques.deposito_id', '=', 2)->whereColumn('estoques.quantidade', '<', 'materials.quantidade_minima')->get();
+                ->where('estoques.deposito_id', '=', 2)->whereColumn('estoques.quantidade', '<=', 'materials.quantidade_minima')->get();
         } else if (5 == $request->tipo_relatorio) {
             $solicitacoes = Solicitacao::join('historico_statuses', 'solicitacaos.id', '=', 'historico_statuses.solicitacao_id')
                 ->where('historico_statuses.data_finalizado', '>=', $data_inicio)->where('historico_statuses.data_finalizado', '<=', $data_fim)
