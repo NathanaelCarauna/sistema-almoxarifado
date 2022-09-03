@@ -37,7 +37,7 @@
                         Apoio
                     </div>
                     <div style="margin:3px;">
-                        <a href="http://www.uag.ufrpe.br/" target="blank">
+                        <a href="http://ufape.edu.br/" target="blank">
                             <img src="{{ asset('/imagens/logo_ufape.png') }}">
                         </a>
                     </div>
