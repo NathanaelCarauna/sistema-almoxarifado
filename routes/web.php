@@ -39,6 +39,23 @@ Route::middleware(['auth', 'verified', 'CheckCargoAdministrador'])->group(functi
     Route::POST('analise_solicitacoes', 'SolicitacaoController@checkAnaliseSolicitacao')->name('analise.solicitacao');
 
     Route::get('deletar_estoque/{id}', 'DepositoController@deletarEstoque');
+
+    Route::get('cadastrar_nota', 'NotasController@cadastrar')->name('cadastrar.nota');
+    Route::get('configurar_notas', 'NotasController@configurar')->name('config.nota');
+    Route::post('alterar_config_notas', 'NotasController@alterarConfig')->name('alterar_config.nota');
+    Route::post('criar_nota', 'NotasController@create')->name('criar.nota');
+    Route::get('nota_materiais_edit', 'NotasController@notaMateriaisEdit')->name('materiais_edit.nota');
+    Route::get('remover_material_nota/{id}', 'NotasController@removerNotaMaterial')->name('remover_material.nota');
+    Route::post('adicionar_material_nota', 'NotasController@adicionarMaterial')->name('adicionar_material.nota');
+
+    Route::get('nota', 'NotasController@indexEdit')->name('index.nota');
+    Route::get('nota/edit/{id}', 'NotasController@edit')->name('edit.nota');
+    Route::post('nota/update', 'NotasController@update')->name('update.nota');
+    Route::get('nota/consulta', 'NotasController@consultar')->name('consult.nota');
+    Route::get('nota/remover/{id}', 'NotasController@remover')->name('remover.nota');
+
+    Route::post('ajaxAdicionarEmitente', 'NotasController@adicionarEmitente')->name('adicionar_emitente.nota');
+
 });
 
 Route::middleware(['auth', 'verified', 'CheckCargoRequerente'])->group(function () {
@@ -79,6 +96,7 @@ Route::middleware('auth', 'verified')->group(function () {
 
     Route::get('observacao_solicitacao/{id}', 'SolicitacaoController@getObservacaoSolicitacao')->name('observacao.solicitacao');
     Route::get('itens_solicitacao_admin/{id}', 'SolicitacaoController@getItemSolicitacaoAdmin')->name('itens.solicitacao.admin');
+    Route::get('notas_material/{id}', 'NotasController@getNotasList')->name('nota.material');
 });
 
 Auth::routes(['verify' => true]);

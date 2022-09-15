@@ -6,7 +6,9 @@ use App\Deposito;
 use App\Estoque;
 use App\itemMovimento;
 use App\Material;
+use App\MaterialNotas;
 use App\Movimento;
+use App\NotaFiscal;
 use App\Notificacao;
 use App\Transferencia;
 use App\Usuario;
@@ -61,6 +63,7 @@ class MovimentoController extends Controller
 
     public function entradaStore(Request $request)
     {
+
         $validator = Validator::make($request->all(), Movimento::$rules, Movimento::$messages)->validate();
 
         $movimentoEntrada = new Movimento();
@@ -71,6 +74,33 @@ class MovimentoController extends Controller
             ['deposito_id', '=', $request['deposito_id']],
             ['material_id', '=', $request['material_id']],
         ])->first();
+
+        $notaFiscal = NotaFiscal::find($request->nota_fiscal_id);
+        $notasMateriais = MaterialNotas::where('nota_fiscal_id', $notaFiscal->id)->get();
+        $notaMaterial = null;
+
+        foreach ($notasMateriais as $notaM){
+            if($notaM->material_id == $request['material_id'])
+            {
+                $notaMaterial = $notaM;
+                break;
+            }
+        }
+        $difQuantNotaM = $notaMaterial->quantidade_total - $notaMaterial->quantidade_atual;
+        if($difQuantNotaM >= $request['quantidade'])
+        {
+            $notaMaterial->quantidade_atual += $request['quantidade'];
+
+            if($notaMaterial->quantidade_atual == $notaMaterial->quantidade_total)
+            {
+                $notaMaterial->status = true;
+            }
+
+            $notaMaterial->save();
+        } else
+        {
+            return redirect()->back()->with('fail', 'A quantidade informada do material: '. Material::find($request['material_id'])->nome .', é maior que a quantidade restante na nota fiscal. Faltam '.$difQuantNotaM.' UND.')->withInput();
+        }
 
         if (null == $estoque) {
             $estoque = new Estoque();
@@ -97,6 +127,7 @@ class MovimentoController extends Controller
         $itemMovimento->material_id = $request['material_id'];
         $itemMovimento->estoque_id = $estoque->id;
         $itemMovimento->movimento_id = $movimentoEntrada->id;
+        $itemMovimento->nota_fiscal_id = $request->nota_fiscal_id;
 
         $itemMovimento->save();
 

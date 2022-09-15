@@ -31,4 +31,9 @@ class Material extends Model
         'descricao.min' => 'A descrição do material deve ter no mínimo 5 caracteres.',
         'descricao.max' => 'A descrição do material deve ter no máximo 255 caracteres.',
     ];
+
+    public function notas_fiscais()
+    {
+        $this->belongsToMany('App\nota_fiscals', 'material_notas', 'nota_fiscal_id', 'material_id');
+    }
 }

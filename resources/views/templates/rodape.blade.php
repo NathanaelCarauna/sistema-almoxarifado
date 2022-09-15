@@ -46,3 +46,13 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function($) {
+        $('#fone').mask('(00)00000-0000');
+        $('#cep').mask('00000-000');
+        $('#cnpj').mask('00.000.000/0000-00');
+        $('#serie').mask('000');
+        $('#numero').mask('000.000.000');
+        $('#cnpj_emitente').mask('00.000.000/0000-00');
+    });
+</script>
