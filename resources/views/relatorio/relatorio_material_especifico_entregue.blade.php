@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Relatório de Solicitações Entregues</title>
+    <title>Relatório individualizado por produto</title>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
@@ -14,7 +14,7 @@
 </head>
 <body>
 <img align="right" src="{{ public_path('imagens/ufape_rel.png') }}" width="200px" height="100px">
-<h2>RELATÓRIO DE {{strtoupper($material->nome)}} ENTREGUES</h2>
+<h2>RELATÓRIO INDIVIDUALIZADO POR PRODUTO</h2>
 <h4>RELATÓRIO REFERENTE AO PERÍODO: {{ date('d/m/Y',  strtotime($datas_item[0])) }} A {{ date('d/m/Y',  strtotime($datas_item[1])) }}</h4>
 
 <table id="tableMateriais" style="width: 100%">
