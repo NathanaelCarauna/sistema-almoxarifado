@@ -4,6 +4,18 @@
     Relatório Material
 @endsection
 
+<style>
+    .select2-selection__rendered {
+        line-height: 31px !important;
+    }
+    .select2-container .select2-selection--single {
+        height: 37px !important;
+    }
+    .select2-selection__arrow {
+        height: 34px !important;
+    }
+</style>
+
 @section('content')
     <div style="border-bottom: #949494 2px solid; padding: 5px; margin-bottom: 10px">
         <h2>RELATÓRIO DE MATERIAIS</h2>
@@ -28,6 +40,7 @@
                         <option value="5">Solicitações entregues</option>
                         <option value="6">Materiais em estado crítico</option>
                         <option value="7">Consultar Materiais</option>
+                        <option value="8">Solicitação de material especifico</option>
 
                     </select>
                     @error('tipo_relatorio')
@@ -36,6 +49,55 @@
                         </span>
                     @enderror
                 </div>
+
+                <div class="col-md-8 form-row" id="rel_item">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="selectMaterial" style="color: #151631; font-family: 'Segoe UI'; font-weight: 700">Material</label>
+                            <select id="selectMaterial" name="material_id" class="selectMaterial form-control" style="width: 100%">
+                                <option></option>
+                                @foreach($materiais as $material)
+                                    <option value="{{$material->id}}">{{$material->codigo}} - {{ $material->nome }} </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="data_inicio">{{ __('Data de início:') }}</label>
+
+                            <input type="date" value="{{ old('data_inicio_item') }}"
+                                   class="form-control @error('data_inicio_item') is-invalid @enderror" name="data_inicio_item"
+                                   min="1910-01-01">
+
+                            @error('data_inicio_item')
+
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="data_fim_item">{{ __('Data de fim:') }}</label>
+
+                            <input type="date" value="{{ old('data_fim_item') }}"
+                                   class="form-control @error('data_fim_item') is-invalid @enderror" name="data_fim_item"
+                                   min="1910-01-01">
+
+                            @error('data_fim_item')
+
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+
 
                 <div class="col-md-4" id="data_inicio">
                     <div class="form-group">
