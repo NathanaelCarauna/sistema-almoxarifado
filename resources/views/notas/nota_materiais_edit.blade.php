@@ -98,7 +98,7 @@
 
                             <div class="form-group col-md-4">
                                 <label for="quantidade_total"> Quantidade Total<span style="color: red">*</span></label>
-                                <input class="form-control  @error('inscricao_estadual') is-invalid @enderror" type="text" name="quantidade_total" id="quantidade_total"
+                                <input class="form-control  @error('inscricao_estadual') is-invalid @enderror" type="number"  step="1" name="quantidade_total" id="quantidade_total"
                                        maxlength="100" @if(isset($config->inscricao_estadual)) value="{{$config->inscricao_estadual}}"
                                        @else value="{{ old('inscricao_estadual') }}" @endif autocomplete="quantidade_total" autofocus
                                        placeHolder="Insira a quantidade total do material" required>
@@ -110,8 +110,8 @@
                             </div>
 
                             <div class="form-group col-md-4">
-                                <label for="valor"> Valor<span style="color: red">*</span></label>
-                                <input class="form-control  @error('valor') is-invalid @enderror" type="text" name="valor" id="valor"
+                                <label for="valor"> Valor Unitário<span style="color: red">*</span></label>
+                                <input class="form-control  @error('valor') is-invalid @enderror" type="number" step="any" name="valor" id="valor"
                                        maxlength="100" autocomplete="valor" autofocus
                                        placeHolder="Insira o valor do material" required>
                                 @error('valor')

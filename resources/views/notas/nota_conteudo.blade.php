@@ -21,7 +21,7 @@
 
         <div class="form-group col-md-4">
             <label for="fone">{{ __('Fone') }}</label>
-            <input id="fone" type="text" min="0" class="form-control @error('fone') is-invalid @enderror"
+            <input id="fone" type="text" min="14" class="form-control @error('fone') is-invalid @enderror"
                    name="fone" @if(isset($config->fone)) value="{{$config->fone}}"
                    @else value="{{ old('fone') }}" @endif required autocomplete="numTel"
                    placeholder="(00)00000-0000" disabled>
@@ -151,7 +151,7 @@
         <div class="col-md-6">
             <label for="numero">Número<span style="color: red">*</span></label>
             <input type="text" class="form-control @error('numero') is-invalid @enderror" id="numero"
-                   name="numero" placeholder="Digite o número da nota fiscal" autofocus autocomplete="numero" min="1" maxlength="100"
+                   name="numero" placeholder="Digite o número da nota fiscal" autofocus autocomplete="numero" minlength="11" maxlength="11"
                    @if(isset($nota->numero)) value="{{$nota->numero}}"
                    @else value="{{ old('numero') }}" @endif
                    @if(isset($readOnly)) disabled @endif required/>
@@ -164,7 +164,7 @@
 
         <div class="col-md-6">
             <label for="serie">Série<span style="color: red">*</span></label>
-            <input type="number" class="form-control @error('serie') is-invalid @enderror" id="serie"
+            <input type="text" class="form-control @error('serie') is-invalid @enderror" id="serie"
                    name="serie" min="3" placeholder="000"
                    @if(isset($nota->serie)) value="{{$nota->serie}}"
                    @else value="{{ old('serie') }}" @endif
