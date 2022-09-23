@@ -21,7 +21,7 @@ class SolicitacaoController extends Controller
         $estoques = Estoque::where('deposito_id', 1)->get();
         $materiais = [];
         foreach ($estoques as $estoque)
-        {   
+        {
             if($estoque->quantidade > 0)
             {
                 array_push($materiais, Material::find($estoque->material_id));
@@ -41,7 +41,6 @@ class SolicitacaoController extends Controller
         for ($i = 0; $i < count($materiais); ++$i) {
             if (empty($materiais[$i]) || empty($quantidades[$i]) || !is_numeric($materiais[$i]) || !is_numeric($quantidades[$i])) {
                 $materiaisCheck = false;
-
                 break;
             }
 
@@ -125,7 +124,7 @@ class SolicitacaoController extends Controller
 
         $solicitacao = Solicitacao::where('id', $solicitacaoID)->first();
         $usuario = Usuario::where('id', $solicitacao->usuario_id)->first();
-        
+
         \App\Jobs\emailSolicitacaoNaoAprovada::dispatch($usuario, $solicitacao);
 
         return redirect()->back()->with('success', 'Solicitação cancelada com sucesso!');
@@ -201,7 +200,7 @@ class SolicitacaoController extends Controller
 
         $solicitacao = Solicitacao::where('id', $solicitacaoID)->first();
         $usuario = Usuario::where('id', $solicitacao->usuario_id)->first();
-        
+
         \App\Jobs\emailSolicitacaoAprovada::dispatch($usuario, $solicitacao);
 
         return redirect()->back()->with('success', 'Solicitação Aprovada com sucesso!');
@@ -301,7 +300,7 @@ class SolicitacaoController extends Controller
 
         $checkQuant = true;
         $errorMessage = [];
-        
+
         foreach($itens as $item){
             $estoqueItem = Estoque::where('material_id', $item->material_id)->where('deposito_id', 1)->first();
             $materialNome = Material::where('id', $item->material_id)->first();
@@ -313,7 +312,7 @@ class SolicitacaoController extends Controller
             }
         }
 
-        
+
 
         if ($checkQuant) {
             $materiais = Material::all();
